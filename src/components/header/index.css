@@ -1,0 +1,13 @@
+::placeholder {
+    text-align: center;
+}
+
+.input_search {
+    height: 20px;
+    width: 180px;
+}
+
+.btnHeader{
+    position: relative;
+    left: 0;
+}

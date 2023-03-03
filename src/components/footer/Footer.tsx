@@ -1,11 +1,15 @@
 import React from 'react'
 
 import Button from '../buttons/Button'
+import Home from '../../assets/images/home.png'
+import Person from '../../assets/images/person.png'
+import './index.css'
 
 const Footer = () => {
   return (
-    <div>
-      <Button name='nesto'/>
+    <div className='buttons'>
+      <Button name='Home' className='home'/>
+      <Button name='Admin' className='admin'/>
     </div>
   )
 }

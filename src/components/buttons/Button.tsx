@@ -1,19 +1,19 @@
 import React from 'react'
 
-//import 'index.css'
+import './index.css'
 
 interface ButtonProps {
     name: string
+    className?: string
 }
 
 
-const Button: React.FC<ButtonProps> = ({
-  name
-}) => {
+
+const Button = ({ name, className = '' }: ButtonProps) => {
 
   return (
     <div>
-      <button>
+      <button className={className}>
         {name}
       </button>
     </div>
