@@ -1,0 +1,183 @@
+@media only screen and (min-width: 420px) {
+
+    body {
+        background: black;
+    }
+
+    .form_container {
+        background: black;
+        border-radius: 10px;
+        width: 400px;
+        height: 500px;
+        display: block;
+        margin-left: 150vh;
+
+    }
+
+    .wellcome_mobile {
+        display: none;
+    }
+
+    .wellcome_desktop {
+        color: antiquewhite;
+        margin-left: 50px;
+    }
+
+    .title {
+        color: bla;
+        padding-left: 45%;
+        padding-top: 75px;
+    }
+
+    .form_input {
+        background: red;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20%;
+        padding-top: 70px;
+    }
+
+    .input {
+        margin-bottom: 50px;
+    }
+
+    .input_field {
+        width: 250px;
+        height: 35px;
+        border-radius: 10px;
+    }
+
+    ::placeholder {
+        text-align: center;
+    }
+
+    .btnSubmit {
+        margin-left: 20%;
+        height: 35px;
+        width: 150px;
+        border-radius: 50px;
+        background-color: aqua;
+    }
+}
+
+body {
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    max-width: 420px;
+}
+
+.login_container {
+    background: aqua;
+    display: block;
+    border-radius: 10px;
+    width: 280px;
+    height: 500px;
+    min-width: 250px;
+}
+
+.wellcome {
+    color: black;
+    margin-left: 30%;
+}
+
+.title {
+    color: black;
+    padding-left: 40%;
+    padding-top: 55px;
+}
+
+.form_input {
+    background: aqua;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20%;
+    padding-top: 70px;
+}
+
+.input {
+    margin-bottom: 50px;
+}
+
+.input_field {
+    width: 180px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+.btnSubmit {
+    background-color: aqua;
+    margin-left: 25%;
+    width: 90px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+body {
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 420px;
+    max-height: 896px;
+}
+
+.form_container {
+    background: aqua;
+    display: block;
+    border-radius: 10px;
+    width: 280px;
+    height: 500px;
+}
+
+.wellcome_mobile {
+    color: white;
+    margin-left: 60px;
+}
+
+.title {
+    color: white;
+    padding-left: 40%;
+    padding-top: 55px;
+}
+
+.form_input {
+    background: aqua;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20%;
+    padding-top: 70px;
+}
+
+.input {
+    margin-bottom: 50px;
+}
+
+.input_field {
+    width: 180px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+.btnSubmit {
+    background-color: aqua;
+    margin-left: 25%;
+    width: 90px;
+    height: 40px;
+    border-radius: 50px;
+}

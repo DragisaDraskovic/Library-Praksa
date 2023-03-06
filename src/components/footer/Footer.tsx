@@ -1,16 +1,27 @@
 import React from 'react'
 
-import Button from '../buttons/Button'
-import Home from '../../assets/images/home.png'
-import Person from '../../assets/images/person.png'
+import { Link, BrowserRouter as Router , Routes, Route } from 'react-router-dom'
+import { BsPersonCircle } from 'react-icons/bs'
+import { MdHome } from 'react-icons/md'
+
+import Login from '../Login/Login'
+//import Button from '../buttons/Button'
+
 import './index.css'
 
 const Footer = () => {
   return (
-    <div className='buttons'>
-      <Button name='Home' className='home'/>
-      <Button name='Admin' className='admin'/>
-    </div>
+    <Router>
+      <div className='buttons'>
+        {/* <Button name='Home' className='home'/>
+        <Button name='Admin' className='admin'/> */}
+        <Link to="/home"><h2>  home </h2></Link>
+        <Link to="/login"><h2> login</h2></Link>
+      </div>
+      <Routes>
+        <Route path='/login' element={<Login />}/>
+      </Routes>
+    </Router>
   )
 }
 
