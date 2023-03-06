@@ -1,14 +1,11 @@
 import React from 'react'
 
-import './index.css'
+import './Header.css'
 
 const Header = () => {
   return (
-    <div className='header'>
-      <input className='input_search' placeholder='Search...'/>
-      <div>
-        <button className='btnHeader'> Meni</button>
-      </div>
+    <div className='header_container'>
+      <input className='header_input_search' placeholder='Search...'/>
     </div>
   )
 }

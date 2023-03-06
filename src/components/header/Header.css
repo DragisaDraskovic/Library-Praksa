@@ -1,0 +1,31 @@
+.header_container {
+    background-color: green;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+.header_input_search {
+    height: 45%;
+    width: 50%;
+    border-radius: 5px;
+}
+
+@media only screen and (min-width: 750px  ) {
+    
+    .header_input_search {
+        width: 25%;
+    }
+
+    .header_container {
+        background-color: wheat;
+    }
+}

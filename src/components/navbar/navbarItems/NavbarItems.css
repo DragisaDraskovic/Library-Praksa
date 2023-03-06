@@ -1,0 +1,22 @@
+.navbaritem_container {
+    display: none;
+}
+
+@media only screen and (min-width: 750px  ) {
+    .navbaritem_container {
+        width: 15%;
+        background-color: wheat;
+        height: 100%;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        padding-top: 15%;
+    }
+
+    .navbaritem_item {
+        padding: 15px 0 0 40px;
+        text-decoration-line: none;
+        text-decoration-color: bisque;
+        color: black;
+    }
+}

@@ -1,0 +1,27 @@
+
+.card_container {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 265px;
+    height: 400px;
+    margin: 20% 10%;
+}
+
+.card_img {
+    display: flex;
+    margin-top: 1px;
+    width: 200px;
+    height: 200px;
+    /* width: 80%;
+    height: 60%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+/* .card_titles {
+    margin-left: 15px;
+} */

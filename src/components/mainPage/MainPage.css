@@ -1,0 +1,16 @@
+
+
+.main_page_container {
+    
+}
+
+@media only screen and (min-width: 750px  ) {
+
+    .main_page_container {
+        margin: 3%;
+        width: 163vh;
+        background-color: goldenrod;
+        height: 900px;
+        margin: 0;
+    }
+}
