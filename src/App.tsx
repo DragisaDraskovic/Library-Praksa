@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import './index.css'
 import Footer from './components/footer/Footer'
@@ -9,13 +9,18 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar'
 import NavbarItems from './components/navbar/navbarItems/NavbarItems'
 import MainPage from './components/mainPage/MainPage'
+import routes from './route-config'
 
 function App() {
   return (
     <BrowserRouter>
       <Header/>
       <Navbar />
-      <MainPage />
+      <Routes>
+        {routes.map(route => <Route key={route.path} path={route.path} element={<route.component />} />
+        )}
+      </Routes>
+      {/* <MainPage /> */}
       <Footer/>
     </BrowserRouter>
 

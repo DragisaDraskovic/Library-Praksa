@@ -1,8 +1,9 @@
+
 import React from 'react'
 
 import { MdHome } from 'react-icons/md'
 import { BsFillPersonFill, BsThreeDots } from 'react-icons/bs'
-//import Button from '../buttons/Button'
+
 
 import './Footer.css'
 

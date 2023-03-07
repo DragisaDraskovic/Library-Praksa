@@ -1,7 +1,11 @@
+
 import React from 'react'
 
 import { NavLink } from 'react-router-dom'
-import { VscThreeBars } from 'react-icons/vsc'
+import { HiOutlineBookOpen } from 'react-icons/hi'
+import { AiOutlineHome } from 'react-icons/ai'
+import { IoPersonOutline } from 'react-icons/io5'
+import { GrClose } from 'react-icons/gr'
 
 import './NavbarItems.css'
 
@@ -9,9 +13,10 @@ import './NavbarItems.css'
 const NavbarItems = () => {
   return (
     <div className='navbaritem_container'>
-      <NavLink className='navbaritem_item' to="/Options 1" >Options 1</NavLink>
-      <NavLink className='navbaritem_item' to="/Options 2" >Options 2</NavLink>
-      <NavLink className='navbaritem_item' to="/Options 3" >Options 3</NavLink>
+      <NavLink className='navbaritem_icon' to="/login" ><HiOutlineBookOpen /></NavLink>
+      <NavLink className='navbaritem_icon' to="/book" ><AiOutlineHome /></NavLink>
+      <NavLink className='navbaritem_icon' to="/nesto" ><IoPersonOutline /></NavLink>
+      <GrClose className='navbar_close'/>
     </div>
   )
 }

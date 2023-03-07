@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import './Card.css'
@@ -9,8 +10,8 @@ const Card = () => {
         <img className='card_img' src='https://images.unsplash.com/photo-1536323760109-ca8c07450053' />
       </div>
       <div className='card_titles'>
-        {/* <p>Authors:</p> */}
-        {/* <p>Details:</p> */}
+        <p>Authors:</p>
+        <p>Details:</p>
       </div>
     </div>
   )
