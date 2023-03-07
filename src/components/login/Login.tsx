@@ -23,10 +23,10 @@ const Login = () => {
       <p className='wellcome_to_library'>Wellcome to library</p>
       <h2 className='title'>Login</h2>
       <form className='form_input' onSubmit={handleLogin}>
-          {/* <input value={username} onChange={handleUsernameChange} /> */}
-          <input className='input_field' placeholder='Entrer username'/>
-          {/* <input type='password' value={password} onChange={handlePasswordChange} /> */}
-          <input className='input_field' placeholder='Enter password'/>
+        {/* <input value={username} onChange={handleUsernameChange} /> */}
+        <input className='input_field' placeholder='Entrer username'/>
+        {/* <input type='password' value={password} onChange={handlePasswordChange} /> */}
+        <input className='input_field' placeholder='Enter password'/>
         <button type='submit' className='btnSubmit'>Login</button>
       </form>
     </div>
