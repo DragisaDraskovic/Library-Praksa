@@ -14,11 +14,13 @@ const Header = () => {
   return (
     <div className='header_container'>
       {showSearchs ?
-        <input className='header_input_search' placeholder='Search...'/>
+        <>
+          <input className='header_input_search' placeholder='Search...'/>
+          <GrFilter className='header_icon'/>
+          <TbArrowsSort className='header_icon'/>
+        </>
         :
         <input className='header_search_visible' /> }
-      <GrFilter className='header_icon'/>
-      <TbArrowsSort className='header_icon'/>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 import { MdHome } from 'react-icons/md'
 import { BsFillPersonFill, BsThreeDots } from 'react-icons/bs'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './Footer.css'
 

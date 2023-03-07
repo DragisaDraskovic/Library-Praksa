@@ -13,7 +13,7 @@ import './NavbarItems.css'
 const NavbarItems = () => {
   return (
     <div className='navbaritem_container'>
-      <NavLink className='navbaritem_icon' to="/login" ><HiOutlineBookOpen /></NavLink>
+      <NavLink className='navbaritem_icon' to="/" ><HiOutlineBookOpen /></NavLink>
       <NavLink className='navbaritem_icon' to="/book" ><AiOutlineHome /></NavLink>
       <NavLink className='navbaritem_icon' to="/nesto" ><IoPersonOutline /></NavLink>
       <GrClose className='navbar_close'/>
