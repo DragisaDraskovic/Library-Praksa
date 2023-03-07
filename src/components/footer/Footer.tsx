@@ -3,16 +3,16 @@ import React from 'react'
 
 import { MdHome } from 'react-icons/md'
 import { BsFillPersonFill, BsThreeDots } from 'react-icons/bs'
-
+import { NavLink, useLocation } from 'react-router-dom'
 
 import './Footer.css'
 
 const Footer = () => {
   return (
     <div className='footer'>
-      <p> <MdHome className='footer_icon'/> </p>
-      <p> <BsFillPersonFill className='footer_icon'/> </p>
-      <p> <BsThreeDots className='footer_icon'/></p>
+      <NavLink className='footer_icon' to='/'><MdHome className='footer_icon'/> </NavLink>
+      <NavLink className='footer_icon' to='/login'> <BsFillPersonFill className='footer_icon'/> </NavLink>
+      <NavLink className='footer_icon' to='/more'><BsThreeDots className='footer_icon'/></NavLink>
     </div>
   )
 }

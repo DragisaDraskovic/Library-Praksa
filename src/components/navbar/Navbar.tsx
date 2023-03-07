@@ -24,8 +24,8 @@ const Navbar = () => {
     return(
       <div className='navbaritem_container'>
         <NavLink className='navbaritem_icon' to="/login" ><HiOutlineBookOpen /></NavLink>
-        <NavLink className='navbaritem_icon' to="/Options 2" ><AiOutlineHome /></NavLink>
-        <NavLink className='navbaritem_icon' to="/Options 3" ><IoPersonOutline /></NavLink>
+        <NavLink className='navbaritem_icon' to="/" ><AiOutlineHome /></NavLink>
+        <NavLink className='navbaritem_icon' to="/Admin" ><IoPersonOutline /></NavLink>
         <GrClose className='navbar_close' onClick={handleNavbar}/>
       </div>
     )
