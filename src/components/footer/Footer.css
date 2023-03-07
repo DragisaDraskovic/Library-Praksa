@@ -1,13 +1,4 @@
 
-.buttons{
-    min-width: 300px;
-    display: inline-flex;
-    justify-content: space-between;
-    position: relative;
-    top: 10px;
-
-}
-
 .footer_icon {
     width: 60px;
     height: 30px;

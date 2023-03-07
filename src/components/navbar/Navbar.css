@@ -1,23 +1,16 @@
 .navbar_container {
     display: none;
 }
- /* .navbar_icon {
-    position: relative;
-    top: 0%;
-    width: 50px;
-    height: 100%;
-    background-color: #0c6aa7;
- } */
+
 
 
 @media only screen and (min-width: 750px  ) {
 
     .navbar_container {
         background-color: #0c6aa7;
-        width: 60px;
+        width: 50px;
         display: flex;
         position: fixed;
-        height: 4%;
         left: 0;
     }
 

@@ -3,7 +3,7 @@ import Login from './components/login/Login'
 
 
 const routes = [
-  { path: '/', component: MainPage, expect: true },
+  { path: '/', component: MainPage },
   { path: '/login', component: Login },
   { path: '*', component: MainPage }
 ]

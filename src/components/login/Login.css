@@ -48,7 +48,7 @@ body {
     text-align: center;
 }
 
-.btnSubmit {
+.button_Submit {
     background-color: #8fd9e4;
     margin-left: 25%;
     width: 90px;
@@ -109,7 +109,7 @@ body {
         text-align: center;
     }
 
-    .btnSubmit {
+    .button_Submit {
         margin-left: 20%;
         height: 35px;
         width: 150px;

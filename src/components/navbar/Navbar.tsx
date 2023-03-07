@@ -3,38 +3,40 @@ import React, { useState } from 'react'
 
 
 import { NavLink } from 'react-router-dom'
-import { HiOutlineBookOpen } from 'react-icons/hi'
-import { AiOutlineHome } from 'react-icons/ai'
-import { IoPersonOutline } from 'react-icons/io5'
-import { GrClose } from 'react-icons/gr'
-import { MdOutlineMenu } from 'react-icons/md'
+import { HiOutlineBookOpen as BookIconForNavbar } from 'react-icons/hi'
+import { AiOutlineHome as HomeIconForNavbar } from 'react-icons/ai'
+import { IoPersonOutline as AdminIconForNavbar } from 'react-icons/io5'
+import { GrClose as XIconForNavbar } from 'react-icons/gr'
+import { MdOutlineMenu as ThreeLineIconForNavbar } from 'react-icons/md'
 
 import './Navbar.css'
 import NavbarItems from './navbarItems/NavbarItems'
 
 
 const Navbar = () => {
-  const [ toggle , setToggle ] = useState(false)
+  const [ toggleNavbar , setToggleNavbar ] = useState(false)
 
   const handleNavbar = () => {
-    setToggle(!toggle)
+    setToggleNavbar(!toggleNavbar)
   }
 
-  if(toggle) {
+  if(toggleNavbar) {
     return(
-      <div className='navbaritem_container'>
-        <NavLink className='navbaritem_icon' to="/login" ><HiOutlineBookOpen /></NavLink>
-        <NavLink className='navbaritem_icon' to="/" ><AiOutlineHome /></NavLink>
-        <NavLink className='navbaritem_icon' to="/Admin" ><IoPersonOutline /></NavLink>
-        <GrClose className='navbar_close' onClick={handleNavbar}/>
+      <div className='navbar_item_container'>
+        <NavLink className='navbar_item_icon' to="/" ><BookIconForNavbar /></NavLink>
+        <NavLink className='navbar_item_icon' to="/" ><HomeIconForNavbar /></NavLink>
+        <NavLink className='navbar_item_icon' to="/login" ><AdminIconForNavbar /></NavLink>
+        <XIconForNavbar className='navbar_close' onClick={handleNavbar}/>
       </div>
     )
   }
 
+
+
   return (
     <div className='navbar_container'>
-      <MdOutlineMenu className='navbar_icon' onClick={handleNavbar}/>
-      {toggle && <NavbarItems />}
+      <ThreeLineIconForNavbar className='navbar_icon' onClick={handleNavbar}/>
+      {toggleNavbar && <NavbarItems />}
     </div>
   )
 }
