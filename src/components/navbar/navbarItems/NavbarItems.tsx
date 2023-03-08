@@ -19,7 +19,7 @@ const NavbarItems = ({ handleNavbar }: NavbarItemsProps) => {
     <div className='navbar_item_container'>
       <NavLink className='navbar_item_icon' to="/" ><BookIconForNavbar /></NavLink>
       <NavLink className='navbar_item_icon' to="/book" ><HomeIconForNavbar /></NavLink>
-      <NavLink className='navbar_item_icon' to="/nesto" ><AdminIconForNavbar /></NavLink>
+      <NavLink className='navbar_item_icon' to="/login" ><AdminIconForNavbar /></NavLink>
       <XIconForNavbar className='navbar_close' onClick={handleNavbar}/>
     </div>
   )
