@@ -10,7 +10,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div className='footer'>
-      <NavLink className='footer_icon' to='/'><HomeIcon className='footer_icon'/> </NavLink>
+      <NavLink className='footer_icon' to='/home'><HomeIcon className='footer_icon'/> </NavLink>
       <NavLink className='footer_icon' to='/login'> <AdminIconForFooter className='footer_icon'/> </NavLink>
       <NavLink className='footer_icon' to='/more'><ThreeDotsIconForFooter className='footer_icon'/></NavLink>
     </div>

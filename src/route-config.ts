@@ -1,11 +1,17 @@
+import { redirect } from 'react-router-dom'
+
 import MainPage from './components/mainPage/MainPage'
 import Login from './components/login/Login'
 
 
+
+
 const routes = [
-  { path: '/', component: MainPage },
+  { path: '/', component: Login , expect: true },
   { path: '/login', component: Login },
-  { path: '*', component: MainPage }
+  { path: '/home', component: MainPage },
+  { path: '*', component: Login }
+
 ]
 
 export default routes

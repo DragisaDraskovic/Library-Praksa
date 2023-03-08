@@ -18,10 +18,15 @@ body {
     padding-top: 16px;
 }
 
-.title {
+.title_login {
     color: white;
     padding-left: 40%;
     padding-top: 55px;
+}
+
+.error_message_for_credentials {
+    color: darkgrey;
+    margin: 30px
 }
 
 .form_input {
@@ -58,6 +63,34 @@ body {
 }
 
 .login_image {
+    display: none;
+}
+
+.error_message_for_login {
+    color: #f53131;
+    border-radius: 5px;
+    margin-right: 30px;
+}
+
+.login_success {
+    display: none;
+}
+
+.blur_for_password_display {
+    color: #f53131;
+    margin: 20px;
+}
+
+.blur_for_password_display_none {
+    display: none;
+}
+
+.blur_for_username_display {
+    color: #f53131;
+    margin: 20px;
+}
+
+.blur_for_username_display_none {
     display: none;
 }
 
@@ -116,5 +149,8 @@ body {
         border-radius: 50px;
         background-color: #8fd9e4;
     }
-
+    
+    .blur_for_input {
+        
+    }
 }

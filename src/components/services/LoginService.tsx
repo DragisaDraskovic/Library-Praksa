@@ -1,16 +1,22 @@
 
 import axios from 'axios'
 
-const baseUrl = ''
+import { LoginResponse } from '../../model/LoginResponse'
+
+const baseUrl = 'https://library-practice-app.azurewebsites.net'
 
 interface LoginCredentialsProps {
-    credentials: string
+    email: string,
+    password: string
 }
 
 
-const LoginService = async ({ credentials } : LoginCredentialsProps) => {
-  const response = await axios.post(baseUrl, credentials)
-  return response.data
+const LoginService = async ({ email, password } : LoginCredentialsProps) => {
+  return axios.post<LoginResponse>(baseUrl + '/api/Auth/login', { email, password })
 }
 
-export default LoginService
+const isLoggedIn = () => {
+  return !!localStorage.getItem('userAccessToken')
+}
+
+export default { LoginService }

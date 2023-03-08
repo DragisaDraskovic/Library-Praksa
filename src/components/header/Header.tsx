@@ -1,26 +1,36 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 
-import React  from 'react'
+import React, { useEffect, useState }  from 'react'
 
-import { GrFilter as FilterIcon } from 'react-icons/gr'
-import { TbArrowsSort as SortIcon } from 'react-icons/tb'
-import { useLocation } from 'react-router-dom'
+import { GrLogout as LogoutIcon } from 'react-icons/gr'
+
 
 import './Header.css'
 
-const Header = () => {
-  const locationPath = useLocation()
-  const showSearchsInput = locationPath.pathname === '/'
+export interface Props {
+  isLoggedIn: boolean,
+}
+
+const Header = ({ isLoggedIn } : Props) => {
+  const [ showLoginIcon, setShowLoginIcon ] = useState(true)
+  const path = window.location.pathname
+
+
+  const handleLogout = () => {
+    console.log('logout')
+    localStorage.removeItem('userAccessToken')
+    localStorage.removeItem('userRefreshToken')
+    localStorage.removeItem('expire')
+    console.log(localStorage.getItem('userAccessToken'))
+  }
 
   return (
     <div className='header_container'>
-      {showSearchsInput ?
-        <>
-          <input className='header_input_search' placeholder='Search...'/>
-          <FilterIcon className='header_icon'/>
-          <SortIcon className='header_icon'/>
-        </>
-        :
-        <input className='header_search_visible' /> }
+      {showLoginIcon &&
+      <div className='logutIcon'>
+        <p onClick={handleLogout}>Logout <LogoutIcon/></p>
+      </div>
+      }
     </div>
   )
 }
