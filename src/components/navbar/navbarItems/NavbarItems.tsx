@@ -9,14 +9,18 @@ import { GrClose as XIconForNavbar } from 'react-icons/gr'
 
 import './NavbarItems.css'
 
+type NavbarItemsProps = {
+  handleNavbar: () => void
+}
 
-const NavbarItems = () => {
+
+const NavbarItems = ({ handleNavbar }: NavbarItemsProps) => {
   return (
     <div className='navbar_item_container'>
       <NavLink className='navbar_item_icon' to="/" ><BookIconForNavbar /></NavLink>
-      <NavLink className='navbaritem_icon' to="/book" ><HomeIconForNavbar /></NavLink>
-      <NavLink className='navbaritem_icon' to="/nesto" ><AdminIconForNavbar /></NavLink>
-      <XIconForNavbar className='navbar_close'/>
+      <NavLink className='navbar_item_icon' to="/book" ><HomeIconForNavbar /></NavLink>
+      <NavLink className='navbar_item_icon' to="/nesto" ><AdminIconForNavbar /></NavLink>
+      <XIconForNavbar className='navbar_close' onClick={handleNavbar}/>
     </div>
   )
 }
