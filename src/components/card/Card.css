@@ -1,0 +1,29 @@
+
+.card_container {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+    height: 400px;
+    margin: 55px;
+    border-radius: 10px;
+}
+
+.card_img {
+    display: flex;
+    margin: 25px;
+    width: 200px;
+    height: 200px;
+}
+
+.card_titles {
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+@media only screen and (min-width: 750px  ) {
+
+    .card_container {
+        margin: 75px;
+    }
+}
