@@ -1,12 +1,32 @@
 
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
+import LoginService from '../services/LoginService'
 
 import './Login.css'
 
+type Credentials = {
+  usename: string
+  password: string
+}
+
 const Login = () => {
+  const [ username, setUsername ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ user , setUser ] = useState(null)
+  const [ errorMessage, setErrorMessage ] = useState('')
 
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    try {
+      const user = await LoginService.LoginService({
+        username: Credential, password: Credential,
+      })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exx)
+    }
   }
 
   return (
