@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 
-import { LoginResponse } from '../../model/LoginResponse'
+import { LoginResponse } from '../model/LoginResponse'
 
 const baseUrl = 'https://library-practice-app.azurewebsites.net'
 

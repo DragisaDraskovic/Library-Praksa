@@ -1,36 +1,27 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import React, { useEffect, useState }  from 'react'
+import React from 'react'
 
 import { GrLogout as LogoutIcon } from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom'
+
+import TokenService from '../../services/TokenService'
 
 
 import './Header.css'
 
-export interface Props {
-  isLoggedIn: boolean,
-}
-
-const Header = ({ isLoggedIn } : Props) => {
-  const [ showLoginIcon, setShowLoginIcon ] = useState(true)
-  const path = window.location.pathname
+const Header = () => {
+  const navigateForLogout = useNavigate()
 
 
   const handleLogout = () => {
-    console.log('logout')
-    localStorage.removeItem('userAccessToken')
-    localStorage.removeItem('userRefreshToken')
-    localStorage.removeItem('expire')
-    console.log(localStorage.getItem('userAccessToken'))
+    TokenService.deleteLocasStorage()
+    navigateForLogout('/')
   }
 
   return (
     <div className='header_container'>
-      {showLoginIcon &&
-      <div className='logutIcon'>
+      <div className='logut_icon'>
         <p onClick={handleLogout}>Logout <LogoutIcon/></p>
       </div>
-      }
     </div>
   )
 }

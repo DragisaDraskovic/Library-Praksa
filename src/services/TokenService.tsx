@@ -1,4 +1,4 @@
-import { LoginResponse } from '../../model/LoginResponse'
+import { LoginResponse } from '../model/LoginResponse'
 
 const userAccesTokenKey = 'userAccessToken'
 const userRefrestTokenKey = 'userRefreshToken'
@@ -16,4 +16,4 @@ const deleteLocasStorage = () => {
   localStorage.removeItem(tokenExpireKey)
 }
 
-export default { setLocalStorage }
+export default { setLocalStorage, deleteLocasStorage }
