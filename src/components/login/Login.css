@@ -65,8 +65,7 @@ body {
 
 .error_message_for_credentials {
     color: #FF3333;
-    margin: 50px;
-    font-size: unset;
+    margin: 20px;
     font-style: oblique;
     font-family: serif;
 }
@@ -126,9 +125,5 @@ body {
         width: 150px;
         border-radius: 50px;
         background-color: #8fd9e4;
-    }
-    
-    .blur_for_input {
-        
     }
 }

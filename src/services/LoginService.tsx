@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import { LoginResponse } from '../model/LoginResponse'
 
-const baseUrl = 'https://library-practice-app.azurewebsites.net'
 
 interface LoginCredentialsProps {
     email: string,
@@ -12,7 +11,7 @@ interface LoginCredentialsProps {
 
 
 const LoginService = async ({ email, password } : LoginCredentialsProps) => {
-  return axios.post<LoginResponse>(baseUrl + '/api/Auth/login', { email, password })
+  return axios.post<LoginResponse>(process.env.REACT_APP_BASE_URL + '/api/Auth/login', { email, password })
 }
 
 const isLoggedIn = () => {

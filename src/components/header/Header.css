@@ -22,16 +22,12 @@
     margin-left: 20px
 }
 
-.header_icon {
-    height: 20px;
-}
-
-.header_search_visible {
-    display: none; 
-}
-
-.logut_icon {
-    margin-left: 300px;
+.logout_button {
+    position: fixed;
+    right: 10px;
+    background: #f23427;
+    border-radius: 10px;
+    border-color: black;
 }
 
 @media only screen and (min-width: 750px  ) {
@@ -45,16 +41,11 @@
         background-color: #0c6aa7;
     }
 
-    .header_con {
-        height: 50%;
-    }
-
-    .logut_for_desktop {
-        margin-left: 1200px;
-    }
-
-    .logut_icon {
-       position: fixed;
-       right : 20px;
+    .logout_button {
+        position: fixed;
+        right: 10px;
+        background: #f23427;
+        border-radius: 10px;
+        border-color: black;
     }
 }

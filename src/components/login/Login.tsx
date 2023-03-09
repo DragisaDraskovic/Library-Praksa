@@ -40,14 +40,14 @@ const Login = () => {
 
   return (
     <div className='form_container'>
-      <p className='wellcome_to_library'>Wellcome to library</p>
-      {flagForEmptyCredentials ? <h3 className='error_message_for_credentials'>Please enter correct username and password </h3> : <h2 className='title_login'>Login</h2>}
+      <p className='wellcome_to_library'>Welcome to library</p>
+      { !flagForEmptyCredentials && <h2 className='title_login'>Login</h2> }
       <form className='form_input' onSubmit={handleLogin}>
         <input
           value={username}
           type='email'
           className='input_field'
-          placeholder='Entrer username'
+          placeholder='Enter username'
           onChange={({ target }) => setUsername(target.value)}
         />
         <input
@@ -57,6 +57,7 @@ const Login = () => {
           placeholder='Enter password'
           onChange={({ target }) => setPassword(target.value)}
         />
+        {flagForEmptyCredentials && <h3 className='error_message_for_credentials'>Please enter correct username and password </h3>}
         <button type='submit' className='button_Submit'>Login</button>
       </form>
     </div>

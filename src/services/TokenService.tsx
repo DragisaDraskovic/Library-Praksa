@@ -10,10 +10,10 @@ const setLocalStorage = (response : LoginResponse) => {
   localStorage.setItem(tokenExpireKey, response.expiration)
 }
 
-const deleteLocasStorage = () => {
+const deleteLocalStorage = () => {
   localStorage.removeItem(userAccesTokenKey)
   localStorage.removeItem(userRefrestTokenKey)
   localStorage.removeItem(tokenExpireKey)
 }
 
-export default { setLocalStorage, deleteLocasStorage }
+export default { setLocalStorage, deleteLocalStorage }

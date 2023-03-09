@@ -13,15 +13,13 @@ const Header = () => {
 
 
   const handleLogout = () => {
-    TokenService.deleteLocasStorage()
+    TokenService.deleteLocalStorage()
     navigateForLogout('/')
   }
 
   return (
     <div className='header_container'>
-      <div className='logut_icon'>
-        <p onClick={handleLogout}>Logout <LogoutIcon/></p>
-      </div>
+      <button className='logout_button' onClick={handleLogout}>Logout <LogoutIcon/></button>
     </div>
   )
 }
