@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { GrLogout as LogoutIcon } from 'react-icons/gr'
 import { useNavigate } from 'react-router-dom'
 

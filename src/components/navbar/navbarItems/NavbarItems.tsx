@@ -1,8 +1,4 @@
-
-import React from 'react'
-
 import { NavLink } from 'react-router-dom'
-import { HiOutlineBookOpen as BookIconForNavbar } from 'react-icons/hi'
 import { AiOutlineHome as HomeIconForNavbar, AiFillPlusCircle as PlusIconForNavbar } from 'react-icons/ai'
 import { IoPersonOutline as AdminIconForNavbar } from 'react-icons/io5'
 import { GrClose as XIconForNavbar } from 'react-icons/gr'
