@@ -18,4 +18,4 @@ const isLoggedIn = () => {
   return !!localStorage.getItem('userAccessToken')
 }
 
-export default { LoginService }
+export default { LoginService, isLoggedIn }
