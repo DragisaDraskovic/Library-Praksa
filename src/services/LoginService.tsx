@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 
 import { LoginResponse } from '../model/LoginResponse'
@@ -18,4 +17,4 @@ const isLoggedIn = () => {
   return !!localStorage.getItem('userAccessToken')
 }
 
-export default { LoginService }
+export default { LoginService, isLoggedIn }

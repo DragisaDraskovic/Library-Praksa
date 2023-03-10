@@ -1,6 +1,3 @@
-
-import React from 'react'
-
 import { MdHome as HomeIcon } from 'react-icons/md'
 import { BsFillPersonFill as AdminIconForFooter, BsThreeDots as ThreeDotsIconForFooter } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
