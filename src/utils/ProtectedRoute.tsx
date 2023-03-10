@@ -8,12 +8,8 @@ import LoginService from '../services/LoginService'
 
 const ProtectedRoute = ({ children }: {children: JSX.Element} ) => {
 
-  !LoginService.isLoggedIn()
-  if(!LoginService.isLoggedIn()) {
-    return <Navigate to='/login' replace />
-  }
+  return !LoginService.isLoggedIn() ? <Navigate to='/login' replace /> : children
 
-  return children
 }
 
 export default ProtectedRoute
