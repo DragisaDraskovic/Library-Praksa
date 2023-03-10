@@ -12,33 +12,6 @@ const MainPage = () => {
   return (
     <div className='main_page_container'>
       <Header />
-      <Card authors='Mesa Selimovic, Ivo Andric, Agata Kristi, Jovan Ducic, Aleksa Santic, Vladislav Petkovic Dis' details='Domaci pisci, Klasicna, Lektira, jos nesto'/>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
       <Navbar />
       <Footer />
     </div>
