@@ -18,10 +18,15 @@ body {
     padding-top: 16px;
 }
 
-.title {
+.title_login {
     color: white;
     padding-left: 40%;
     padding-top: 55px;
+}
+
+.error_message_for_credentials {
+    color: darkgrey;
+    margin: 30px
 }
 
 .form_input {
@@ -57,9 +62,14 @@ body {
     margin-top: 20px;
 }
 
-.login_image {
-    display: none;
+
+.error_message_for_credentials {
+    color: #FF3333;
+    margin: 20px;
+    font-style: oblique;
+    font-family: serif;
 }
+
 
 @media only screen and (min-width: 750px) {
 
@@ -116,5 +126,4 @@ body {
         border-radius: 50px;
         background-color: #8fd9e4;
     }
-
 }

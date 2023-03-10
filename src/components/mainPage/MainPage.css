@@ -1,8 +1,11 @@
 
+.main_page_container {
+    padding-top: 40px;
+}
+
 @media only screen and (min-width: 750px  ) {
 
     .main_page_container {
-        width: 163vh;
         background-color: #8fd9e4;
         height: 900px;
         margin: 0;
@@ -10,5 +13,6 @@
         flex-wrap: wrap;
         justify-content: space-around;
         margin-left: 60px;
+        padding-top: 0;
     }
 }

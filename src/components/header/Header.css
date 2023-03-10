@@ -5,10 +5,9 @@
     height: 60px;
     position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 10px;
     left: 0;
+    top: 0;
 }
 
 ::placeholder {
@@ -23,13 +22,14 @@
     margin-left: 20px
 }
 
-.header_icon {
-    height: 20px;
+.logout_button {
+    position: fixed;
+    right: 10px;
+    background: #f23427;
+    border-radius: 10px;
+    border-color: black;
 }
 
-.header_search_visible {
-    display: none; 
-}
 @media only screen and (min-width: 750px  ) {
 
     .header_input_search {
@@ -41,7 +41,11 @@
         background-color: #0c6aa7;
     }
 
-    .header_icon {
-        height: 50%;
+    .logout_button {
+        position: fixed;
+        right: 10px;
+        background: #f23427;
+        border-radius: 10px;
+        border-color: black;
     }
 }

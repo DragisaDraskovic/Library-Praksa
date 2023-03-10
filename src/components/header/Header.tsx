@@ -1,26 +1,25 @@
+import React from 'react'
 
-import React  from 'react'
+import { GrLogout as LogoutIcon } from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom'
 
-import { GrFilter as FilterIcon } from 'react-icons/gr'
-import { TbArrowsSort as SortIcon } from 'react-icons/tb'
-import { useLocation } from 'react-router-dom'
+import TokenService from '../../services/TokenService'
+
 
 import './Header.css'
 
 const Header = () => {
-  const locationPath = useLocation()
-  const showSearchsInput = locationPath.pathname === '/'
+  const navigateForLogout = useNavigate()
+
+
+  const handleLogout = () => {
+    TokenService.deleteLocalStorage()
+    navigateForLogout('/')
+  }
 
   return (
     <div className='header_container'>
-      {showSearchsInput ?
-        <>
-          <input className='header_input_search' placeholder='Search...'/>
-          <FilterIcon className='header_icon'/>
-          <SortIcon className='header_icon'/>
-        </>
-        :
-        <input className='header_search_visible' /> }
+      <button className='logout_button' onClick={handleLogout}>Logout <LogoutIcon/></button>
     </div>
   )
 }
