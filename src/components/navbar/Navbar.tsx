@@ -17,8 +17,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar_container'>
-      <ThreeLineIconForNavbar className='navbar_icon' onClick={handleNavbar}/>
-      {toggleNavbar && <NavbarItems handleNavbar={handleNavbar} />}
+      <ThreeLineIconForNavbar className='navbar_icon' onClick={handleNavbar}/> 
     </div>
   )
 }
