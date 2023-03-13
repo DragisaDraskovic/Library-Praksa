@@ -8,6 +8,7 @@
   display: block;
   margin-left: 600px;
   margin-top: 100px;
+  background-color: wheat;
 }
 
 .heder_modal {
@@ -25,7 +26,7 @@
   height: 40px;
   background-color: white;
   display: block;
-  background-color: lightslategrey;
+  background-color: wheat;
   border: none;
 }
 
@@ -35,7 +36,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -53,6 +54,16 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_title:focus {
+  outline: none;
 }
 
 .input_for_description {
@@ -61,7 +72,18 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
 }
+
+.input_for_description:focus {
+  outline: none;
+}
+
 
 .input_for_isbn {
   margin-left: 90px;
@@ -69,6 +91,16 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_isbn:focus {
+  outline: none;
 }
 
 .input_for_quantity {
@@ -77,6 +109,16 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_quantity:focus {
+  outline: none;
 }
 
 .input_for_date {
@@ -85,6 +127,17 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  text-align: center;
+}
+
+.input_for_date:focus {
+  outline: none;
 }
 
 .input_for_image {
@@ -93,6 +146,7 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  padding: 6px 12px;
 }
 
 .select_for_authors {
@@ -101,6 +155,17 @@
   width: 260px;
   height: 40px;
   border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  text-align: center;
+}
+
+.select_for_authors:focus {
+  outline: none;
 }
 
 .submit_button_for_modal {
@@ -108,4 +173,35 @@
   margin-top: 50px;
   width: 120px;
   height: 30px;
+}
+
+.button_for_add_book {
+  display: flex;
+  margin: auto;
+  border-radius: none;
+  border: none;
+  background: wheat;
+}
+
+.hidden_button_submit {
+  display: none;
+}
+
+.hiden_add_form {
+  display: none;
+}
+
+.input_for_author_firstname {
+  display: flex;
+  margin: auto;
+}
+
+.input_for_author_lastname {
+  display: flex;
+  margin: auto;
+}
+
+.button_for_add_author {
+  display: flex;
+  margin: auto;
 }
