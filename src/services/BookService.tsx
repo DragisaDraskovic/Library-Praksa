@@ -10,16 +10,16 @@ const getAllBooks = () => {
     headers: { Authorization: `Bearer ${token}` }
   }
   const request = axios.get(process.env.REACT_APP_BASE_URL + '/api/Books', config)
-  return request.then(response => response.data)
+  return request
 }
 
-const createBook = async (newBook : FormData) => {
+const createBook = (newBook : FormData) => {
 
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }
 
-  const response = await axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook,  config )
+  const response = axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook,  config )
   return response
 }
 

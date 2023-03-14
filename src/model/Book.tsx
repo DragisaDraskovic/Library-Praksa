@@ -1,7 +1,7 @@
 import Author from './Author'
 
 export default interface BookBody {
-    Id: number
+    Id?: number
     Title: string
     Description: string
     Isbn: string
