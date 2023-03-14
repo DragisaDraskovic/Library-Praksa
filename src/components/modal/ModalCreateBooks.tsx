@@ -11,7 +11,7 @@ import BookBody from '../../model/Book'
 import BookService from '../../services/BookService'
 import Author from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
-
+import placeholder from '../../assets/placeholder/placeholderForBook.png'
 
 
 interface Modal {
@@ -24,6 +24,7 @@ const poratlDiv = document.getElementById('portal') as HTMLElement
 const ModalCreateBooks = ({ open , onClose } : Modal) => {
 
   const [ showAddAuthor, setShowAddAuthor ] = useState(true)
+  const [ showAddButton, setShowAddButton ] = useState(true)
   const [ authors, setAtuhors ] = useState([])
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
@@ -38,9 +39,12 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
     AuthorIds: []
   })
 
-  const handlerCloseModal = () => {
-    onClose()
-  }
+  const [ authorData, setAuthorData ] = useState<Author>({
+    Id: 0,
+    FirstName: '',
+    LastName: ''
+  })
+
 
   const handleImgUpload = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
     if (currentTarget.files) {
@@ -55,12 +59,10 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
         }
       }
     }
-}
+  }
   const hanlderCreateBooks = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(booksData)
     try {
-      console.log(booksData.AuthorIds)
       const form = new FormData()
       form.append('Title', booksData.Title)
       form.append('Description', booksData.Description)
@@ -74,25 +76,58 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
       if(axios.isAxiosError(error)) {
         if(error.response?.status === 401) {
           console.log('Not authenticated')
-        } else if (error.response?.status === 403) {
-          console.log('Not authorized')
-        } else if (error.response?.status === 500) {
-          console.log('Bad request')
         }
       }
     }
+  }
+
+  const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
+    handlerNewAuthor()
+    event.preventDefault()
+    try {
+      const form = new FormData()
+      form.append('FirstName', authorData.FirstName)
+      form.append('LastName', authorData.LastName)
+      await AuthorService.createAuthor(form)
+    } catch(error) {
+      if(axios.isAxiosError(error)) {
+        if(error.response?.status === 401) {
+          console.log('Not authenticated')
+        }
+      }
+    }
+  }
+
+  const handlerNewAuthor = () => {
+    AuthorService.getAuthors().then((response) => {
+      setAtuhors(response)
+    })
+    setShowAddAuthor(true)
+    setShowAddButton(true)
+  }
+
+  const handlerCloseModal = () => {
+    onClose()
+  }
+
+  const handleFormAuthor = () => {
+    setShowAddAuthor(false)
+    setShowAddButton(false)
+  }
+
+  const handleCloseFormAuthor = () => {
+    setShowAddAuthor(true)
+    setShowAddButton(true)
   }
 
   useEffect(() => {
     AuthorService.getAuthors()
       .then(response => {
         setAtuhors(response)
-        console.log(response)
       })
   }, [])
 
   const handleAuthor = (newAuthors: MultiValue<Author>) => {
-    console.log(newAuthors)
     setBooksData((prev) => ({ ...prev, AuthorIds: newAuthors as Author[] }))
   }
 
@@ -106,6 +141,7 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
           <div className='heder_modal'>
             <button type='button' onClick={handlerCloseModal} className='x_button_for_modal'><XIconForModal className='x_icon_for_modal'/></button>
           </div>
+          <img className='modal_cover_img' src={coverImg ? coverImg : placeholder} />
           <div className='container_for_element'>
             <input type='text' className='input_for_title' placeholder='Title' onChange={({ target }) => setBooksData((prevTitle) => ({ ...prevTitle, Title: target.value }))}/>
           </div>
@@ -127,16 +163,19 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
           <div className='container_for_element'>
             <Select name='authors' id='authors' className='select_for_authors' getOptionLabel={(author : Author) => `${author.FirstName} ${author.LastName}`} isMulti={true} getOptionValue={(option:Author) => option.Id.toString()} options={authors} onChange={handleAuthor} />
             <div className='add_book_button' >
-              <button className='button_for_add_book' onClick={() => setShowAddAuthor(false)} >Add book <BookAddIcon/></button>
+              <button type='button' className={ showAddButton ? 'button_for_add_book' : 'hiden_add_button'} onClick={handleFormAuthor} >Add book <BookAddIcon/></button>
             </div>
             <div className='container_for_element'>
               <button type='submit' className={showAddAuthor ? 'submit_button_for_modal' : 'hidden_button_submit'}>Submit</button>
             </div>
-            <div className={ showAddAuthor ? 'hiden_add_form' : 'add_author' }>
-              <input type='text' className='input_for_author_firstname' />
-              <input type='text' className='input_for_author_lastname' />
-              <button type='submit' className='button_for_add_author'>Add</button>
-            </div>
+          </div>
+        </form>
+        <form className={ showAddAuthor ? 'hiden_add_form' : 'add_author' } onSubmit={handleCreateAuthor}>
+          <input type='text' className='input_for_author_firstname' required placeholder='Enter first name' onChange={({ target }) => setAuthorData((prevFirstName) => ({ ...prevFirstName, FirstName: target.value }))}/>
+          <input type='text' className='input_for_author_lastname' required placeholder='Enter last name' onChange={({ target }) => setAuthorData(( prevLastName) => ({ ...prevLastName, LastName: target.value }))}/>
+          <div className='container_for_author_button'>
+            <button type='submit' className='button_for_add_author' onClick={handlerNewAuthor}>Add</button>
+            <button type='button' onClick={handleCloseFormAuthor} className='button_for_close_author_form'>Close</button>
           </div>
         </form>
       </div>
@@ -145,6 +184,5 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
     poratlDiv
   )
 }
-
 
 export default ModalCreateBooks

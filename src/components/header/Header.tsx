@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <div className='header_container'>
-      <button className='logout_button' onClick={handleLogout}>Login <LogoutIcon/></button>
+      <button className='logout_button' onClick={handleLogout}>Logout <LogoutIcon/></button>
     </div>
   )
 }

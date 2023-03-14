@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { MdOutlineMenu as ThreeLineIconForNavbar } from 'react-icons/md'
 
 import './Navbar.css'
-import NavbarItems from './navbarItems/NavbarItems'
 
 
 const Navbar = () => {
@@ -17,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar_container'>
-      <ThreeLineIconForNavbar className='navbar_icon' onClick={handleNavbar}/> 
+      <ThreeLineIconForNavbar className='navbar_icon' onClick={handleNavbar}/>
     </div>
   )
 }

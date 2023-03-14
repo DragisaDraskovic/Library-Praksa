@@ -1,13 +1,276 @@
 .content {
+  background-color: wheat;
+    z-index: 2;
+    width: 350px;
+    height: 800px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-style: outset;
+    border-color: black;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.heder_modal {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.x_icon_for_modal {
+  width: 30px;
+  height: 30px;
+}
+
+.x_button_for_modal {
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-color: wheat;
+  border: none;
+}
+
+.container_for_element {
+  position: relative;
+}
+
+.input_for_title {
+  margin-left: 40px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_title:focus {
+  outline: none;
+}
+.input_for_isbn {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_isbn:focus {
+  outline: none;
+}
+
+.input_for_quantity {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_quantity:focus {
+  outline: none;
+}
+
+.input_for_date {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_date:focus {
+  outline: none;
+}
+
+.input_for_description {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+.input_for_description:focus{
+  outline: none;
+}
+
+.input_for_image {
+  margin-left: 90px;
+  margin-top: 50px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+
+.select_for_authors {
+  margin-left: 90px;
+  margin-top: 50px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  text-align: center;
+}
+
+.select_for_authors:focus {
+  outline: none;
+}
+
+.input_for_image {
+  margin-left: 40px;
+  margin-top: 10px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+
+.select_for_authors {
+  margin-left: 40px;
+  margin-top: 10px;
+  width: 260px;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom-style: inset;
+  background: wheat;
+  border-bottom-color: black;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  text-align: center;
+}
+
+.select_for_authors:focus {
+  outline: none;
+}
+
+.submit_button_for_modal {
+  margin-left: 110px;
+  margin-top: 50px;
+  width: 120px;
+  height: 30px;
+  border-radius: 50px;
+  background: wheat;
+}
+
+.button_for_add_book {
+  display: flex;
+  margin: auto;
+  border-radius: none;
+  border: none;
+  background: wheat;
+}
+
+.hidden_button_submit {
+  display: none;
+}
+
+.hiden_add_form {
+  display: none;
+}
+
+.hiden_add_button {
+  display: none;
+}
+
+.input_for_author_firstname {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 60px;
+  height: 30px;
+  width: 230px;
+  border-radius: 10px;
+}
+
+.input_for_author_lastname {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 60px;
+  height: 30px;
+  width: 230px;
+  border-radius: 10px;
+}
+
+.button_for_add_author {
+  border: none;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 130px;
+  background: darkseagreen;
+  border-radius: 50px;
+}
+
+.container_for_author_button {
+  display: flex;
+}
+
+.button_for_close_author_form {
+  border-radius: 50px;
+  margin-top: 10px;
+  background: #FC4646
+}
+
+.modal_cover_img {
+  width: 250px;
+  height: 250px;
+  margin-left: 50px;
+}
+
+@media only screen and (min-width: 750px  ) {
+
+.content {
   margin-left: 50px;
   background-color: lightslategrey;
   z-index: 2;
   width: 450px;
-  height: 800px;
+  height: 900px;
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   display: block;
   margin-left: 600px;
-  margin-top: 100px;
+  margin-top: 40px;
   background-color: wheat;
 }
 
@@ -52,7 +315,7 @@
   margin-left: 90px;
   margin-top: 50px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -70,7 +333,7 @@
   margin-left: 90px;
   margin-top: 50px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -89,7 +352,7 @@
   margin-left: 90px;
   margin-top: 50px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -107,7 +370,7 @@
   margin-left: 90px;
   margin-top: 50px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -125,7 +388,7 @@
   margin-left: 90px;
   margin-top: 50px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -151,9 +414,9 @@
 
 .select_for_authors {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 10px;
   width: 260px;
-  height: 40px;
+  height: 20px;
   border-radius: 5px;
   border-bottom-style: inset;
   background: wheat;
@@ -170,9 +433,11 @@
 
 .submit_button_for_modal {
   margin-left: 160px;
-  margin-top: 50px;
+  margin-top: 30px;
   width: 120px;
   height: 30px;
+  border-radius: 50px;
+  background: wheat;
 }
 
 .button_for_add_book {
@@ -181,6 +446,9 @@
   border-radius: none;
   border: none;
   background: wheat;
+  width: 120px;
+  margin-left: 180px;
+  margin-top: 20px;
 }
 
 .hidden_button_submit {
@@ -191,17 +459,51 @@
   display: none;
 }
 
+.hiden_add_button {
+  display: none;
+}
+
 .input_for_author_firstname {
   display: flex;
-  margin: auto;
+  margin-top: 30px;
+  margin-left: 100px;
+  height: 30px;
+  width: 230px;
+  border-radius: 10px;
 }
 
 .input_for_author_lastname {
   display: flex;
-  margin: auto;
+  margin-top: 10px;
+  margin-left: 100px;
+  height: 30px;
+  width: 230px;
+  border-radius: 10px;
 }
 
 .button_for_add_author {
+  border: none;
   display: flex;
-  margin: auto;
+  margin-top: 10px;
+  margin-left: 180px;
+  background: darkseagreen;
+  border-radius: 50px;
+}
+
+.container_for_author_button {
+  display: flex;
+}
+
+.button_for_close_author_form {
+  border-radius: 50px;
+  margin-top: 10px;
+  background: #FC4646
+}
+
+.modal_cover_img {
+  width: 250px;
+  height: 250px;
+  margin-left: 100px;
+}
+
 }

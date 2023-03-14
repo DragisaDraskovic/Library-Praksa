@@ -1,4 +1,3 @@
-
 .header_container {
     background-color: #0c6aa7;
     width: 100%;
@@ -25,7 +24,7 @@
 .logout_button {
     position: fixed;
     right: 10px;
-    background: #f23427;
+    background: #8fd9e4;;
     border-radius: 10px;
     border-color: black;
 }
@@ -47,5 +46,15 @@
         background: #f23427;
         border-radius: 10px;
         border-color: black;
+    }
+
+    .button_for_navbar {
+        border: none;
+        background: #0c6aa7;
+    }
+
+    .icon_for_navbar {
+        height: 30px;
+        width: 30px;
     }
 }
