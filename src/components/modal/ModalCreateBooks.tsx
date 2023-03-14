@@ -91,7 +91,8 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
       await AuthorService.createAuthor(form)
     } catch(error) {
       if(axios.isAxiosError(error)) {
-        if(error.response?.status === 401) {
+        if(error.response?.status === 400) {
+          window.alert('Hello world!')
           console.log('Not authenticated')
         }
       }

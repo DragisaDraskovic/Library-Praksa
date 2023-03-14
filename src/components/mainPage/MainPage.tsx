@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import BookList from '../bookList/BookList'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
 import ModalCreateBooks from '../modal/ModalCreateBooks'
@@ -23,6 +24,7 @@ const MainPage = () => {
     <div className='main_page_container'>
       <Header/>
       <NavbarItems setModalIsOpen={handleModalClose}/>
+      <BookList />
       <ModalCreateBooks open={modalIsOpen} onClose={handleModalOpen}/>
       <Footer setModalIsOpen={handleModalClose}/>
     </div>
