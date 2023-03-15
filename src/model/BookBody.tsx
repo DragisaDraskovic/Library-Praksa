@@ -8,5 +8,5 @@ export default interface BookBody {
     Quantity: number
     Cover: Blob
     PublishDate: string
-    Authors: Author[]
+    AuthorsIds: Author[]
 }

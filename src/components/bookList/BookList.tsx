@@ -3,48 +3,51 @@ import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import  Book from '../../model/Book'
+import BookRequest from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 
+const numberCard = 12
+
 const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
-  const [ page, setPage ] = useState(1)
+  const [ pageNubmer, setPageNumber ] = useState(1)
 
   useEffect(() => {
     dataBooks()
-  }, [ ])
+  }, [ pageNubmer ])
 
-  const handler = () => {
-    setPage(prev => prev + 1)
+  const nexPage = () => {
+    setPageNumber( pageNubmer + 1)
   }
 
   const dataBooks = async () => {
+    const bookRequest : BookRequest = {
+      PageNumber: pageNubmer,
+      PageLength: numberCard
+    }
     try{
-      const response = await BookService.getAllBooks()
-      setBook(response)
+      const response = await BookService.getAllBooks(bookRequest)
+      setHasMore(pageNubmer * numberCard <= response.data.TotalCount)
+      setBook(() => [ ...book,...response.data.Items ])
     } catch(error) {
-      console.log(error)
+      console.error(error)
     }
   }
   return (
     <div>
       <InfiniteScroll
         dataLength={book.length}
-        next={handler}
+        next={nexPage}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={<b>You have seen all books</b>}
+        loader={<h4 className='loading_message'>Loading...</h4>}
+        endMessage={<b className='end_message'>You have seen all books :( ...</b>}
         scrollThreshold='75%'
       >
         <div className='container_for_bookList'>
-          {book.length === 0
-            ?
-            ( <h2 className='no_available_message'>No available books</h2> )
-            :
-            (book && book.map((books) => <Card key={books.Id} book={books} />)
-            )}
+          {book.map((booksData) => <Card key={booksData.Id} book={booksData} /> )}
         </div>
       </InfiniteScroll>
     </div>

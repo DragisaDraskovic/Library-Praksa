@@ -1,16 +1,28 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 
 import TokenService from './TokenService'
+import BookRequest from '../model/BookRequest'
+import BookResponse from '../model/BookResponse'
 
 const token = TokenService.getAccesToken()
 
-const getAllBooks = () => {
+
+const urlParams = (bookRequest: BookRequest) => {
+  const result = '?'
+  const nesto1 = 'PageNumber=' + bookRequest.PageNumber.toString()
+  const nesto2 = 'PageLength=' + bookRequest.PageLength.toString()
+  const nesto = result + nesto1 + '&' + nesto2
+  return nesto
+}
+
+
+const getAllBooks = ( bookRequest : BookRequest) : Promise<AxiosResponse<BookResponse>> => {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }
-  const request = axios.get(process.env.REACT_APP_BASE_URL + '/api/Books', config)
-  return request.then(response => response.data)
+  const request = axios.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(bookRequest), config)
+  return request
 }
 
 const createBook = async (newBook : FormData) => {

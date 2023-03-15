@@ -7,7 +7,7 @@ import './ModalCreateBooks.css'
 import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
 
-import BookBody from '../../model/Book'
+import BookBody from '../../model/BookBody'
 import BookService from '../../services/BookService'
 import Author from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
@@ -36,7 +36,7 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
     Quantity: 0,
     Cover: fileImg,
     PublishDate: '',
-    AuthorIds: []
+    AuthorsIds: []
   })
 
   const [ authorData, setAuthorData ] = useState<Author>({
@@ -70,7 +70,7 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
       form.append('Quantity', booksData.Quantity.toString())
       form.append('Cover', fileImg)
       form.append('PublishDate', booksData.PublishDate)
-      booksData.AuthorIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
+      booksData.AuthorsIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
       await BookService.createBook(form)
     } catch(error) {
       if(axios.isAxiosError(error)) {
