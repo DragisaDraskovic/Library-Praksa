@@ -1,12 +1,26 @@
 import axios from 'axios'
 
+import TokenService from './TokenService'
+
+const token = TokenService.getAccesToken()
+
 const getAllBooks = () => {
-  const request = axios.get(process.env.REACT_APP_BASE_URL + '/api/Books')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const request = axios.get(process.env.REACT_APP_BASE_URL + '/api/Books', config)
   return request
 }
 
 const createBook = (newBook : FormData) => {
-  const response = axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook)
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook, config)
   return response
 }
 
