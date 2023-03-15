@@ -6,13 +6,17 @@
 @media only screen and (min-width: 750px  ) {
 
     .main_page_container {
-        background-color: #8fd9e4;
-        height: 900px;
-        margin: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-left: 60px;
-        padding-top: 0;
+        width: 90%;
+    background-color: #8fd9e4;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    margin-left: auto;
+    }
+
+    .button_for_create_book {
+        position: absolute;
+        right: 0;
     }
 }

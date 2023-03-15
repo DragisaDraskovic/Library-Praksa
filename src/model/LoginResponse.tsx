@@ -1,6 +1,6 @@
 
 export interface LoginResponse {
-    accessToken: string
-    refreshToken: string
-    expiration: string
+    AccessToken: string
+    RefreshToken: string
+    Expiration: string
 }

@@ -5,9 +5,9 @@ const userRefrestTokenKey = 'userRefreshToken'
 const tokenExpireKey = 'expire'
 
 const setLocalStorage = (response : LoginResponse) => {
-  localStorage.setItem(userAccesTokenKey,response.accessToken)
-  localStorage.setItem(userRefrestTokenKey, response.refreshToken)
-  localStorage.setItem(tokenExpireKey, response.expiration)
+  localStorage.setItem(userAccesTokenKey,response.AccessToken)
+  localStorage.setItem(userRefrestTokenKey, response.RefreshToken)
+  localStorage.setItem(tokenExpireKey, response.Expiration)
 }
 
 const deleteLocalStorage = () => {
@@ -16,4 +16,8 @@ const deleteLocalStorage = () => {
   localStorage.removeItem(tokenExpireKey)
 }
 
-export default { setLocalStorage, deleteLocalStorage }
+const getAccesToken = () => {
+  return localStorage.getItem(userAccesTokenKey)
+}
+
+export default { setLocalStorage, deleteLocalStorage, getAccesToken }

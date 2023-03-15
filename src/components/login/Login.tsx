@@ -19,11 +19,11 @@ const Login = () => {
 
     if(password.trim() !== '' || username.trim() !== '') {
       try {
-        const response = await LoginService.LoginService({ email: username, password })
+        const response = await LoginService.LoginService({ Email: username, Password: password })
         setLocalStorage.setLocalStorage(response.data)
         setUsername('')
         setPassword('')
-        navigate('/home')
+        navigate('/')
       } catch(error) {
         if(axios.isAxiosError(error)) {
           if(error?.response?.status === 401) {
