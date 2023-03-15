@@ -6,11 +6,7 @@ import TokenService from './TokenService'
 const token = TokenService.getAccesToken()
 
 const getAuthors = () => {
-
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
-  }
-  const request = axios.get<Author[]>(process.env.REACT_APP_BASE_URL + '/api/Authors', config)
+  const request = axios.get<Author[]>(process.env.REACT_APP_BASE_URL + '/api/Authors')
   return request
 }
 
