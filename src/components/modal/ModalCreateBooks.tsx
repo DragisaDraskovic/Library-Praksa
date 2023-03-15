@@ -70,7 +70,7 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
     } catch(error) {
       if(axios.isAxiosError(error)) {
         if(error.response?.status === 401) {
-          console.log('Not authenticated')
+          console.error(error)
         }
       }
     }
@@ -88,7 +88,7 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
     } catch(error) {
       if(axios.isAxiosError(error)) {
         if(error.response?.status === 401) {
-          console.log('Not authenticated')
+          console.error(error)
         }
       }
     }
