@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import BookBody from '../../model/Book'
+import { Book } from '../../model/Book'
 import './Card.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 
-interface Book {
-  book: BookBody
+interface Books {
+  book: Book
 }
 
-const Card = ({ book } : Book) => {
+const Card = ({ book } : Books) => {
   const [ placeholder , setPlaceholder ] = useState('')
 
   useEffect(() => {

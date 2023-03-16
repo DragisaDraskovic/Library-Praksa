@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
 
-
 import TokenService from './TokenService'
 import BookRequest from '../model/BookRequest'
 import BookResponse from '../model/BookResponse'
@@ -13,19 +12,21 @@ const urlParams = (bookRequest: BookRequest) => {
 }
 const getAllBooks = ( bookRequest : BookRequest) : Promise<AxiosResponse<BookResponse>> => {
   const config = {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
   const request = axios.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(bookRequest), config)
   return request
 }
 
-const createBook = async (newBook : FormData) => {
-
+const createBook = (newBook : FormData) => {
   const config = {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
-
-  const response = await axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook,  config )
+  const response = axios.post(process.env.REACT_APP_BASE_URL + '/api/Books', newBook, config)
   return response
 }
 

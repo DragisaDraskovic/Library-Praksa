@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import  Book from '../../model/Book'
+import { Book } from '../../model/Book'
 import BookRequest from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import Card from '../card/Card'

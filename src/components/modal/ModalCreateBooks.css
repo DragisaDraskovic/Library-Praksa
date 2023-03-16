@@ -57,6 +57,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_title:focus {
@@ -74,6 +75,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_isbn:focus {
@@ -92,6 +94,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_quantity:focus {
@@ -110,6 +113,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_date:focus {
@@ -128,6 +132,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_description:focus{
@@ -265,7 +270,6 @@
 @media only screen and (min-width: 750px  ) {
 
 .content {
-  margin-left: 50px;
   background-color: lightslategrey;
   z-index: 2;
   width: 450px;
@@ -471,7 +475,7 @@
   display: flex;
   margin-top: 30px;
   margin-left: 100px;
-  height: 30px;
+  height: 25px;
   width: 230px;
   border-radius: 10px;
 }
@@ -480,7 +484,7 @@
   display: flex;
   margin-top: 10px;
   margin-left: 100px;
-  height: 30px;
+  height: 25px;
   width: 230px;
   border-radius: 10px;
 }
@@ -501,6 +505,7 @@
 .button_for_close_author_form {
   border-radius: 50px;
   margin-top: 10px;
+  border: none;
   background: #FC4646
 }
 

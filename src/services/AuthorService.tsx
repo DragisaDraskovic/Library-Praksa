@@ -1,20 +1,21 @@
 import axios from 'axios'
 
-
+import Author from '../model/Author'
 import TokenService from './TokenService'
 
-const token = TokenService.getAccesToken(
-)
-const getAuthors = () => {
+const token = TokenService.getAccesToken()
 
+const getAuthors = () => {
   const config = {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
-  const request = axios.get(process.env.REACT_APP_BASE_URL + '/api/Authors', config)
-  return request.then(response => response.data)
+  const request = axios.get<Author[]>(process.env.REACT_APP_BASE_URL + '/api/Authors', config)
+  return request
 }
 
-const createAuthor = async (newAuthor : FormData) => {
+const createAuthor = (newAuthor : FormData) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}` ,
@@ -22,7 +23,7 @@ const createAuthor = async (newAuthor : FormData) => {
     }
   }
 
-  const response = await axios.post(process.env.REACT_APP_BASE_URL + '/api/Authors', newAuthor, config)
+  const response = axios.post(process.env.REACT_APP_BASE_URL + '/api/Authors', newAuthor, config)
   return response
 }
 
