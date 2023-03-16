@@ -1,40 +1,40 @@
-import { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
-import debounce from 'lodash.debounce'
 
 import { Book } from '../../model/Book'
 import BookRequest from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
+import Search from '../search/Search'
 
 const numberCard = 12
+
+interface HomepageProps {
+  search: string
+}
 
 const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNubmer, setPageNumber ] = useState(1)
-  const [ searchInput, setSearchInput ] = useState('')
   const [ search, setSearch ] = useState('')
+  // const [ searchBook, setSearchBook] = useState
 
   useEffect(() => {
-  //  if(searchInput !== '') {
-    //console.log('radi')
-    //setSearch(searchInput)
     dataBooks()
-   // }
   }, [ pageNubmer ])
 
   const nexPage = () => {
     setPageNumber( pageNubmer + 1)
   }
 
-  const dataBooks = async () => {
-    const bookRequest : BookRequest = {
-      PageNumber: pageNubmer,
-      PageLength: numberCard
-    }
+  const dataBooks = async (pageNubmer: BookRequest) => {
+    // const bookRequest : BookRequest = {
+    //   PageNumber: pageNubmer,
+    //   PageLength: numberCard
+    // }
     try{
       const response = await BookService.getAllBooks(bookRequest)
       setHasMore(pageNubmer * numberCard <= response.data.TotalCount)
@@ -43,21 +43,9 @@ const BookList = () => {
       console.error(error)
     }
   }
-
-  const handleSearch = ( { target }: ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(target.value)
-  }
-
-  const debouncedChangeHandler = useMemo(
-    () => debounce(handleSearch, 300),
-    [])
-
   return (
     <div>
-      <div className='container_for_search_and_filter'>
-        <input onChange={debouncedChangeHandler}/>
-        <button>filter</button>
-      </div>
+      <Search setSearchValue={setSearch}/>
       <InfiniteScroll
         dataLength={book.length}
         next={nexPage}

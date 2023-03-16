@@ -1,0 +1,13 @@
+.container_for_search {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.input_for_search {
+    width: 450px;
+    height: 40px;
+    border-radius: 10px;
+    border-color: black;
+    background-color: aliceblue;
+}
