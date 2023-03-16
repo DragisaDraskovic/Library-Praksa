@@ -9,14 +9,8 @@ const token = TokenService.getAccesToken()
 
 
 const urlParams = (bookRequest: BookRequest) => {
-  const result = '?'
-  const nesto1 = 'PageNumber=' + bookRequest.PageNumber.toString()
-  const nesto2 = 'PageLength=' + bookRequest.PageLength.toString()
-  const nesto = result + nesto1 + '&' + nesto2
-  return nesto
+  return `?PageNumber=${bookRequest.PageNumber.toString()}&PageLength=${bookRequest.PageLength.toString()}`
 }
-
-
 const getAllBooks = ( bookRequest : BookRequest) : Promise<AxiosResponse<BookResponse>> => {
   const config = {
     headers: { Authorization: `Bearer ${token}` }

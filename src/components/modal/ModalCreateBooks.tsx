@@ -29,14 +29,13 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
   const [ booksData, setBooksData ] = useState<BookBody>({
-    Id: 0,
     Title: '',
     Description: '',
     Isbn: '',
     Quantity: 0,
     Cover: fileImg,
     PublishDate: '',
-    AuthorsIds: []
+    AuthorIds: []
   })
 
   const [ authorData, setAuthorData ] = useState<Author>({
@@ -70,7 +69,7 @@ const ModalCreateBooks = ({ open , onClose } : Modal) => {
       form.append('Quantity', booksData.Quantity.toString())
       form.append('Cover', fileImg)
       form.append('PublishDate', booksData.PublishDate)
-      booksData.AuthorsIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
+      booksData.AuthorIds.forEach((author) => form.append('AuthorsIds', author.Id.toString()))
       await BookService.createBook(form)
     } catch(error) {
       if(axios.isAxiosError(error)) {

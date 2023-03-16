@@ -15,10 +15,12 @@
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
+  display: flex;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
+  justify-content: center;
 }
 
 .heder_modal {
@@ -41,6 +43,7 @@
 
 .container_for_element {
   position: relative;
+  display: contents;
 }
 
 .input_for_title {
@@ -269,8 +272,6 @@
   height: 900px;
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   display: block;
-  margin-left: 600px;
-  margin-top: 40px;
   background-color: wheat;
 }
 
@@ -304,7 +305,10 @@
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
   z-index: 2;
+  justify-content: center;
+  align-items: center;
 }
 
 .container_for_element {
@@ -313,7 +317,7 @@
 
 .input_for_title {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -331,7 +335,7 @@
 
 .input_for_description {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -350,7 +354,7 @@
 
 .input_for_isbn {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -368,7 +372,7 @@
 
 .input_for_quantity {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -386,7 +390,7 @@
 
 .input_for_date {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;

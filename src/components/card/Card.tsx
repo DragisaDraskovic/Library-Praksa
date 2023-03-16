@@ -16,9 +16,7 @@ const Card = ({ book } : Book) => {
   },[])
   return (
     <div className='card_container'>
-      {/* <div className='card_img_container'> */}
-        <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholder} />
-      {/* </div> */}
+      <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholder} />
       <div className='card_title'>
         <p>{book.Title}</p>
       </div>
@@ -28,8 +26,6 @@ const Card = ({ book } : Book) => {
       <div className='card_author'>
         {book.Authors &&
         book.Authors.map((authors) => (
-
-          //template literal
           <p key={authors.Id}> {authors.FirstName} {authors.LastName}</p>
         ))}
       </div>
