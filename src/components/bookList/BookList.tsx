@@ -8,13 +8,13 @@ import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 
-const numberCard = 12
 
 const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNubmer, setPageNumber ] = useState(1)
 
+  const numberOfCard = 24
   useEffect(() => {
     getDataBooks()
   }, [ pageNubmer ])
@@ -26,11 +26,11 @@ const BookList = () => {
   const getDataBooks = async () => {
     const bookRequest : BookRequest = {
       PageNumber: pageNubmer,
-      PageLength: numberCard
+      PageLength: numberOfCard
     }
     try{
       const response = await BookService.getAllBooks(bookRequest)
-      setHasMore(pageNubmer * numberCard <= response.data.TotalCount)
+      setHasMore(pageNubmer * numberOfCard <= response.data.TotalCount)
       setBook([ ...book,...response.data.Items ])
     } catch(error) {
       console.error(error)
