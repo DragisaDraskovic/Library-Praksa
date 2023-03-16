@@ -30,4 +30,11 @@
         display: flex;
         justify-content: center;
     }
+
+    .container_for_search_and_filter {
+        margin-top: 50px;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+    }
     }

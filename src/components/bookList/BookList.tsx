@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
+import debounce from 'lodash.debounce'
 
 import { Book } from '../../model/Book'
 import BookRequest from '../../model/BookRequest'
@@ -14,9 +15,15 @@ const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNubmer, setPageNumber ] = useState(1)
+  const [ searchInput, setSearchInput ] = useState('')
+  const [ search, setSearch ] = useState('')
 
   useEffect(() => {
+  //  if(searchInput !== '') {
+    //console.log('radi')
+    //setSearch(searchInput)
     dataBooks()
+   // }
   }, [ pageNubmer ])
 
   const nexPage = () => {
@@ -36,8 +43,21 @@ const BookList = () => {
       console.error(error)
     }
   }
+
+  const handleSearch = ( { target }: ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(target.value)
+  }
+
+  const debouncedChangeHandler = useMemo(
+    () => debounce(handleSearch, 300),
+    [])
+
   return (
     <div>
+      <div className='container_for_search_and_filter'>
+        <input onChange={debouncedChangeHandler}/>
+        <button>filter</button>
+      </div>
       <InfiniteScroll
         dataLength={book.length}
         next={nexPage}
