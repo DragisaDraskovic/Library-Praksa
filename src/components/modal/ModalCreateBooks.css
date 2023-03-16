@@ -132,7 +132,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
-  text-align: center;
+  
 }
 
 .input_for_description:focus{
@@ -271,10 +271,9 @@
 
 .content {
   background-color: lightslategrey;
-  z-index: 2;
   width: 450px;
   height: 900px;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 12px;
   display: block;
   background-color: wheat;
 }
@@ -310,7 +309,6 @@
   left: 0;
   right: 0;
   display: flex;
-  z-index: 2;
   justify-content: center;
   align-items: center;
 }

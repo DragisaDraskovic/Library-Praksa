@@ -25,7 +25,6 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
   const [ booksData, setBooksData ] = useState<BookRequest>({
-    Id: 0,
     Title: '',
     Description: '',
     Isbn: '',

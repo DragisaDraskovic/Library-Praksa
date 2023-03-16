@@ -16,14 +16,14 @@ const BookList = () => {
   const [ pageNubmer, setPageNumber ] = useState(1)
 
   useEffect(() => {
-    dataBooks()
+    getDataBooks()
   }, [ pageNubmer ])
 
   const nexPage = () => {
     setPageNumber( pageNubmer + 1)
   }
 
-  const dataBooks = async () => {
+  const getDataBooks = async () => {
     const bookRequest : BookRequest = {
       PageNumber: pageNubmer,
       PageLength: numberCard
@@ -31,7 +31,7 @@ const BookList = () => {
     try{
       const response = await BookService.getAllBooks(bookRequest)
       setHasMore(pageNubmer * numberCard <= response.data.TotalCount)
-      setBook(() => [ ...book,...response.data.Items ])
+      setBook([ ...book,...response.data.Items ])
     } catch(error) {
       console.error(error)
     }

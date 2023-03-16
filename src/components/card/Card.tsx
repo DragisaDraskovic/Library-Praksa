@@ -4,11 +4,11 @@ import { Book } from '../../model/Book'
 import './Card.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 
-interface Books {
+interface ShowBook {
   book: Book
 }
 
-const Card = ({ book } : Books) => {
+const Card = ({ book } : ShowBook) => {
   const [ placeholder , setPlaceholder ] = useState('')
 
   useEffect(() => {
@@ -20,13 +20,13 @@ const Card = ({ book } : Books) => {
       <div className='card_title'>
         <p>{book.Title}</p>
       </div>
-      <div className='card_titles'>
+      <div className='card_description'>
         <p>{book.Description?.substring(0,30)}</p>
       </div>
       <div className='card_author'>
         {book.Authors &&
-        book.Authors.map((authors) => (
-          <p key={authors.Id}> {authors.FirstName} {authors.LastName}</p>
+        book.Authors.map((author) => (
+          <p key={author.Id}> {author.FirstName} {author.LastName}</p>
         ))}
       </div>
       <div className='button_for_card'>
