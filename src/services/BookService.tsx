@@ -7,12 +7,13 @@ import Where from '../model/Where'
 const token = TokenService.getAccesToken()
 
 interface GetBooksProps {
-  pageNumber: number
-  pageLength: number
-  search: string
-  filter: Where[]
+  pageNumber: number,
+  pageLength: number,
+  search: string,
+  filter: Where[],
   sort: string[]
 }
+
 const createSearch  = (search: string) => {
   return {
     Field: 'Title',
@@ -25,7 +26,7 @@ const urlParams = ({ pageNumber, pageLength, search, filter } : GetBooksProps) =
   let result = '?'
   result += `PageNumber=${pageNumber.toString()}`
   result += `&PageLength=${pageLength.toString()}`
-  const where: Where[] =[ ...filter ]
+  const where: Where[] = [ ...filter ]
   where.push(createSearch(search))
   where.forEach((where) => {
     if(where.Value !== '' && where.Value !== null) {
@@ -34,7 +35,7 @@ const urlParams = ({ pageNumber, pageLength, search, filter } : GetBooksProps) =
   })
   return result
 }
-const getAllBooks = ({ pageNumber, pageLength, search, filter, sort } : GetBooksProps) : Promise<AxiosResponse<BookResponse>> => {
+const getAllBooks = ({  pageNumber, pageLength, search, filter, sort } : GetBooksProps) : Promise<AxiosResponse<BookResponse>> => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`

@@ -8,44 +8,70 @@ import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 import Search from '../search/Search'
+import Where from '../../model/Where'
 
-const numberCard = 12
 
-interface HomepageProps {
-  search: string
+interface BooksProps {
+  PageNumber: number,
+  PageLength: number,
+  Search: string
+  Filter: Where[]
+  Sort: string[]
 }
 
 const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
-  const [ pageNubmer, setPageNumber ] = useState(1)
+  const [ pageNumber, setPageNumber ] = useState(1)
+  const [ searchInput, setSearchInput ] = useState('')
   const [ search, setSearch ] = useState('')
-  // const [ searchBook, setSearchBook] = useState
-
-  useEffect(() => {
-    dataBooks()
-  }, [ pageNubmer ])
+  const [ filter, setFilter ] = useState<Where[]>([])
+  const [ sort, setSort ] = useState<string[]>([])
+  const numberCard = 12
 
   const nexPage = () => {
-    setPageNumber( pageNubmer + 1)
+    setPageNumber( pageNumber + 1)
   }
 
-  const dataBooks = async (pageNubmer: BookRequest) => {
-    // const bookRequest : BookRequest = {
-    //   PageNumber: pageNubmer,
-    //   PageLength: numberCard
-    // }
+  const dataBooks = async (
+    pageNumber: number,
+    pageLength: number,
+    search: string,
+    filter: Where[],
+    sort: string[]
+  ) => {
     try{
-      const response = await BookService.getAllBooks(bookRequest)
-      setHasMore(pageNubmer * numberCard <= response.data.TotalCount)
+      const response = await BookService.getAllBooks({ pageNumber, pageLength, search, filter, sort })
+      setHasMore(pageNumber * numberCard <= response.data.TotalCount)
       setBook(() => [ ...book,...response.data.Items ])
     } catch(error) {
-      console.error(error)
+      //console.error(error)
+      setBook([])
     }
   }
+
+  const refreshPage = () => {
+    setBook([])
+    setPageNumber(1)
+  }
+
+  useEffect(() => {
+    if(search !== searchInput) {
+      setSearch(searchInput)
+      refreshPage()
+    }
+
+    // if(search !== searchInput) {
+    //   setBook([])
+    //   setPageNumber(1)
+    //   setSearch(searchInput)
+    // }
+    dataBooks(pageNumber, numberCard, search, filter, sort)
+  }, [ pageNumber, searchInput ]
+  )
   return (
     <div>
-      <Search setSearchValue={setSearch}/>
+      <Search setSearchValue={setSearchInput}/>
       <InfiniteScroll
         dataLength={book.length}
         next={nexPage}
