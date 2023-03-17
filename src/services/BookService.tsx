@@ -3,6 +3,8 @@ import axios, { AxiosResponse } from 'axios'
 import TokenService from './TokenService'
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
+import { BookDetailsRequest } from '../model/BookRequest'
+
 
 const token = TokenService.getAccesToken()
 
@@ -45,5 +47,14 @@ const createBook = (newBook : FormData) => {
   return response
 }
 
+const getBook = (id: number) : Promise<AxiosResponse<BookDetailsRequest>> => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const respone = axios.get<BookDetailsRequest>(process.env.REACT_APP_BASE_URL + `/api/Books/${id}`, config)
+  return respone
+}
 
-export default { getAllBooks, createBook }
+export default { getAllBooks, createBook, getBook }

@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Book } from '../../model/Book'
 import './Card.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
+
 
 interface CardProps {
   book: Book
 }
 
 const Card = ({ book } : CardProps) => {
+  const navigate = useNavigate()
   return (
-    <div className='card_container'>
+    <div className='card_container' onClick={() => navigate(`/BookDetails/${book.Id}`)}>
       <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholderImg} />
       <div className='card_title'>
         <p>{book.Title}</p>

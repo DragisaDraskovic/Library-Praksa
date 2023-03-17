@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import Author from '../model/Author'
+import { Author } from '../model/Author'
 import TokenService from './TokenService'
 
 const token = TokenService.getAccesToken()

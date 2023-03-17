@@ -8,7 +8,7 @@ import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
 
 import BookService from '../../services/BookService'
-import Author from '../../model/Author'
+import { Author } from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
 import { BookRequest } from '../../model/Book'

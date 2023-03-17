@@ -38,6 +38,7 @@
     .header_container {
         display: flex;
         background-color: #0c6aa7;
+        border-bottom: solid 2px black;
     }
 
     .logout_button {

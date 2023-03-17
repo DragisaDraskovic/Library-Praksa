@@ -1,0 +1,53 @@
+.container_for_details {
+    margin-top: 100px;
+    width: 1500px;
+    height:1100px;
+     gap: 20px;
+     background: #d6f3f8;
+}
+
+.container_for_button {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.container_for_img {
+    display: flex;
+}
+
+.container_for_text {
+    margin: auto;
+    display: block;
+}
+
+.button_edit {
+    background: #6969e4;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+}
+
+.button_delete {
+    background: #ff3333;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+}
+
+.button_rent {
+    background: #bef0be;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+}
+
+.container_for_text {
+    display: block;
+}
+
+.card_img {
+    border: inset 3px #6b6bcb;
+}
+
+

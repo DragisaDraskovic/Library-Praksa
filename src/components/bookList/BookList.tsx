@@ -16,7 +16,7 @@ interface BooksRequest {
   PageLength: number,
   Where: Where[],
 }
-const initialItem = 6
+const initialItem = 24
 const BookList = () => {
   const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)

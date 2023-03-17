@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import BookDetails from '../bookDetails/BookDetails'
 import BookList from '../bookList/BookList'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
