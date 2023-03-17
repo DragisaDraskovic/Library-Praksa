@@ -16,15 +16,13 @@ interface BooksRequest {
   PageLength: number,
   Where: Where[],
 }
-
-
+const initialItem = 6
 const BookList = () => {
   const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNumber, setPageNumber ] = useState(1)
   const [ searchValue, setSearchValue ] = useState('')
   const [ currentSearch, setCurrentSearch ] = useState<string>(searchValue)
-  const initialItem = 6
 
   const nexPage = () => {
     setPageNumber(pageNumber => pageNumber + 1)

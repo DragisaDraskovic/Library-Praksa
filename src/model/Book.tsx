@@ -13,7 +13,6 @@ export interface BookBody {
 }
 
 export interface BookRequest {
-    Id: number
     Title: string
     Description: string
     Isbn: string
