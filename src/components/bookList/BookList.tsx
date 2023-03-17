@@ -8,13 +8,12 @@ import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 
-
+const numberOfCard = 24
 const BookList = () => {
   const [ book, setBook ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNubmer, setPageNumber ] = useState(1)
 
-  const numberOfCard = 24
   useEffect(() => {
     getDataBooks()
   }, [ pageNubmer ])

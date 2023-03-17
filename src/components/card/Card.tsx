@@ -1,22 +1,15 @@
-import { useEffect, useState } from 'react'
-
 import { Book } from '../../model/Book'
 import './Card.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 
-interface ShowBook {
+interface CardProps {
   book: Book
 }
 
-const Card = ({ book } : ShowBook) => {
-  const [ placeholder , setPlaceholder ] = useState('')
-
-  useEffect(() => {
-    setPlaceholder(placeholderImg)
-  },[])
+const Card = ({ book } : CardProps) => {
   return (
     <div className='card_container'>
-      <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholder} />
+      <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholderImg} />
       <div className='card_title'>
         <p>{book.Title}</p>
       </div>
