@@ -1,7 +1,18 @@
 import Author from './Author'
 
-export default interface BookBody {
-    Id?: number
+export interface BookBody {
+    Id: number
+    Title: string
+    Description: string
+    Isbn: string
+    Quantity: number
+    Cover: Blob
+    PublishDate: string
+    Authors: Author[]
+    TotalCount: number
+}
+
+export interface BookRequest {
     Title: string
     Description: string
     Isbn: string
@@ -9,4 +20,15 @@ export default interface BookBody {
     Cover: Blob
     PublishDate: string
     AuthorIds: Author[]
+}
+
+export interface Book {
+    Id: number
+    Title: string
+    Description: string
+    Isbn: string
+    Quantity: number
+    Cover: Blob
+    PublishDate: string
+    Authors: Author[]
 }

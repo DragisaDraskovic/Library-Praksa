@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import BookList from '../bookList/BookList'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
 import ModalCreateBooks from '../modal/ModalCreateBooks'
@@ -19,7 +20,8 @@ const MainPage = () => {
     <div className='main_page_container'>
       <Header/>
       <NavbarItems setModalIsOpen={handleModalToggle}/>
-      {modalIsOpen && (<ModalCreateBooks onClose={handleModalToggle}/> )}
+      <BookList />
+      { modalIsOpen && <ModalCreateBooks onClose={handleModalToggle}/>}
       <Footer setModalIsOpen={handleModalToggle}/>
     </div>
   )

@@ -15,10 +15,12 @@
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
+  display: flex;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
+  justify-content: center;
 }
 
 .heder_modal {
@@ -41,6 +43,7 @@
 
 .container_for_element {
   position: relative;
+  display: contents;
 }
 
 .input_for_title {
@@ -54,6 +57,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_title:focus {
@@ -71,6 +75,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_isbn:focus {
@@ -89,6 +94,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_quantity:focus {
@@ -107,6 +113,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  text-align: center;
 }
 
 .input_for_date:focus {
@@ -125,6 +132,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  
 }
 
 .input_for_description:focus{
@@ -263,10 +271,10 @@
 
 .content {
   background-color: lightslategrey;
-  z-index: 2;
   width: 450px;
   height: 900px;
-  box-shadow: 0 1px 12px rgb(0 0 0 / 50%);
+  box-shadow: 0 1px 12px;
+  display: block;
   background-color: wheat;
 }
 
@@ -293,12 +301,16 @@
 
 .overlay {
   width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    z-index: 2;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container_for_element {
@@ -307,7 +319,7 @@
 
 .input_for_title {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -325,7 +337,7 @@
 
 .input_for_description {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -344,7 +356,7 @@
 
 .input_for_isbn {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -362,7 +374,7 @@
 
 .input_for_quantity {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;
@@ -380,7 +392,7 @@
 
 .input_for_date {
   margin-left: 90px;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 260px;
   height: 20px;
   border-radius: 5px;

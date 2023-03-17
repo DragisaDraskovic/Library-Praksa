@@ -7,12 +7,11 @@ import './ModalCreateBooks.css'
 import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
 
-import BookBody from '../../model/Book'
 import BookService from '../../services/BookService'
 import Author from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
-
+import { BookRequest } from '../../model/Book'
 
 interface Modal {
   onClose: () => void
@@ -25,7 +24,7 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
   const [ authors, setAtuhors ] = useState<Author[]>([])
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
-  const [ booksData, setBooksData ] = useState<BookBody>({
+  const [ booksData, setBooksData ] = useState<BookRequest>({
     Title: '',
     Description: '',
     Isbn: '',
