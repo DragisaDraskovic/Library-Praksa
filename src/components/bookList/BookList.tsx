@@ -1,95 +1,71 @@
 import { useEffect, useState } from 'react'
 
+import { AxiosResponse } from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Book } from '../../model/Book'
-import BookRequest from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 import Search from '../search/Search'
 import Where from '../../model/Where'
+import BookResponse from '../../model/BookResponse'
 
-
-// interface BooksProps {
-//   pageNumber: number,
-//   pageLength: number,
-//   search: string
-//   filter: Where[]
-//   sort: string[]
-// }
-
-//Move to model
-interface Pagination {
-  size: number,
-  page: number,
-  totalElements: number | null
+interface BooksRequest {
+  PageNumber: number,
+  PageLength: number,
+  Where: Where[],
 }
 
-const initalPagination: Pagination = {
-  size: 20,
-  page: 1,
-  totalElements: null
-}
 
 const BookList = () => {
-  const [ book, setBook ] = useState<Book[]>([])
+  const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
   const [ pageNumber, setPageNumber ] = useState(1)
-  const [ pagination , setPagination] = useState<Pagination>(initalPagination);
-  const [ searchInput, setSearchInput ] = useState('')
-  const [ search, setSearch ] = useState('')
-  const [ filter, setFilter ] = useState<Where[]>([])
-  const [ sort, setSort ] = useState<string[]>([])
+  const [ searchValue, setSearchValue ] = useState('')
+  const [ currentSearch, setCurrentSearch ] = useState<string>(searchValue)
+  const initialItem = 6
 
   const nexPage = () => {
-    setPageNumber( pageNumber + 1)
+    setPageNumber(pageNumber => pageNumber + 1)
   }
 
-  const dataBooks = ( searchValue: string ) => {
-      const response = BookService.getAllBooks({ pageNumber: pagination.size, pageLength: pagination.page, search: searchValue, })
-      .then((response) => {
-        const totalElements = response.data.TotalCount;
-        setHasMore(pageNumber * totalElements <= totalElements)
-        setBook(() => [ ...book,...response.data.Items ])
-        setPagination((prevState) => { return { ...prevState, totalElements: totalElements }})
-      })
-      .catch((e) => console.log(e))
+  const dataBooks = () => {
+    const bookRequest : BooksRequest = {
+      PageNumber: pageNumber,
+      PageLength: initialItem,
+      Where: [ { Field: 'Title',Value: searchValue, Operation: 2 } ]
     }
-  }
-
-  const refreshPage = () => {
-    setBook([])
-    setPageNumber(1)
+    BookService.getAllBooks(bookRequest)
+      .then((response:AxiosResponse<BookResponse>) => {
+        const totalElements = response.data.TotalCount
+        setHasMore(pageNumber * initialItem <= totalElements)
+        setBooks((books) => [ ...books,...response.data.Items ])
+      })
+      .catch((e) => console.error (e))
   }
 
   useEffect(() => {
-    if(search !== searchInput) {
-      setSearch(searchInput)
-      refreshPage()
+    if(currentSearch !== searchValue) {
+      setBooks([])
+      setPageNumber(1)
+      setCurrentSearch(searchValue)
     }
+    dataBooks()
+  }, [ pageNumber, searchValue ])
 
-    // if(search !== searchInput) {
-    //   setBook([])
-    //   setPageNumber(1)
-    //   setSearch(searchInput)
-    // }
-    dataBooks(pageNumber, numberCard, search, filter, sort)
-  }, [ pageNumber, searchInput ]
-  )
   return (
     <div>
-      <Search dataBooks={dataBooks} />
+      <Search setSearchValue={setSearchValue} />
       <InfiniteScroll
-        dataLength={book.length}
+        dataLength={books.length}
         next={nexPage}
         hasMore={hasMore}
         loader={<h4 className='loading_message'>Loading...</h4>}
         endMessage={<b className='end_message'>You have seen all books :( ...</b>}
-        scrollThreshold='75%'
       >
         <div className='container_for_bookList'>
-          {book.map((booksData) => <Card key={booksData.Id} book={booksData} /> )}
+          {books.map((booksData) => <Card key={booksData.Id} book={booksData} /> )}
         </div>
       </InfiniteScroll>
     </div>
