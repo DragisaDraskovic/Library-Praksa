@@ -17,7 +17,7 @@ import ModalCreateBooks from '../modal/ModalCreateBooks'
 const BookDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-
+  const [ isOpenEditModal, setIsOpenEditModal ] = useState(false)
   const [ bookDetails, setBookDetails ] = useState<BookDetailsRequest>(
     {
       Id: 0,
@@ -47,6 +47,25 @@ const BookDetails = () => {
     navigate('/mainpage')
   }
 
+  const handleDeleteBook = () => {
+    BookService.deleteBook(bookDetails.Id)
+      .then(() => {
+        navigate('/mainpage')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  const handleEditBook = () => {
+    setIsOpenEditModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsOpenEditModal(false)
+  }
+
+
   return (
     <div className='container_for_details'>
       <button className='button_back' onClick={handleBack}><IconForBack/></button>
@@ -72,9 +91,10 @@ const BookDetails = () => {
       </div>
       <div className='container_for_button'>
         <button className='button_edit'>Edit</button>
-        <button className='button_delete'>Delete</button>
+        <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
         <button className='button_rent'>Rent</button>
       </div>
+      { isOpenEditModal && <ModalCreateBooks onClose={handleCloseModal} />}
     </div>
   )
 }

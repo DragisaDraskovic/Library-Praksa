@@ -18,7 +18,6 @@ const getAuthors = () => {
 const createAuthor = (newAuthor : FormData) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}` ,
       'Content-Type': 'application/json'
     }
   }
