@@ -1,49 +1,48 @@
 import { FormEvent, useEffect, useState } from 'react'
 
 import axios from 'axios'
-import Select, { MultiValue } from 'react-select'
 import ReactDOM from 'react-dom'
-import './ModalCreateBooks.css'
 import { GrClose as XIconForModal } from 'react-icons/gr'
-import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
 
+import { BookRequestForEdit } from '../../model/BookRequestEdit'
 import BookService from '../../services/BookService'
-import { Author } from '../../model/Author'
+import './ModalForEdit.css'
+import Placeholder from '../../assets/placeholder/placeholderForBook.png'
 import AuthorService from '../../services/AuthorService'
-import placeholder from '../../assets/placeholder/placeholderForBook.png'
-import { BookRequest, OneBookRequest } from '../../model/Book'
+import { Author } from '../../model/Author'
 import AuthorRequest from '../../model/AuthorRequest'
+import { convertDateToString } from '../../utils/ConvertDate'
+
 
 
 interface Modal {
-  onClose: () => void
-  bookId?: number
+    onClose: () => void
+    bookId?: number
 }
 
 const poratlDiv = document.getElementById('portal') as HTMLElement
-const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
-  const [ toggleAuthorForm , setToggleAuthorForm ] = useState(true)
+const ModalForEdit = ({ onClose, bookId } : Modal) => {
+  const [ cover, setCover ] = useState(Placeholder)
   const [ authors, setAtuhors ] = useState<Author[]>([])
+  const [ toggleAuthorForm ,setToggleAuthorForm ] = useState(false)
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
-  const [ coverImg, setCoverImg ] = useState('')
-  const [ bookForUpdate, setBookForUpdate ] = useState<OneBookRequest>()
-  const [ booksData, setBooksData ] = useState<BookRequest>({
+  const [ bookForUpdate, setBookForUpdate ] = useState<BookRequestForEdit>({
+    Id: 0,
     Title: '',
     Description: '',
-    Isbn: '',
+    ISBN: '',
     Quantity: 0,
     Cover: fileImg,
     PublishDate: '',
     AuthorIds: []
-  })
+ })
 
-  const [ authorData, setAuthorData ] = useState<AuthorRequest>({
+ const [ authorData, setAuthorData ] = useState<AuthorRequest>({
     FirstName: '',
     LastName: ''
   })
 
-
-  const handleImgUpload = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
+ const handleImgUpload = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
     if (currentTarget.files) {
       const files = currentTarget.files
       const reader = new FileReader()
@@ -51,46 +50,53 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
       setFileImg(files[0])
       reader.onloadend = function () {
         const base64data = reader.result
-        if (base64data) setCoverImg(base64data as string)
-      }
-    }
-  }
-  const hanlderCreateBooks = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    try {
-      const form = new FormData()
-      form.append('Title', booksData.Title)
-      form.append('Description', booksData.Description)
-      form.append('Isbn', booksData.Isbn)
-      form.append('Quantity', booksData.Quantity.toString())
-      form.append('Cover', fileImg)
-      form.append('PublishDate', booksData.PublishDate)
-      booksData.AuthorIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
-      await BookService.createBook(form)
-      onClose()
-    } catch(error) {
-      if(axios.isAxiosError(error)) {
-        if(error.response?.status === 401) {
-          console.error(error)
-        }
+        if (base64data) setCover(base64data as string)
       }
     }
   }
 
-  const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if(bookId) {
+      BookService.getBook(bookId)
+        .then((response) => {
+          setBookForUpdate({
+            Id: bookId,
+            Title: response.data.Title,
+            Description: response.data.Description,
+            ISBN: response.data.ISBN,
+            Quantity: response.data.Quantity,
+            PublishDate: response.data.PublishDate.toString(),
+            Cover: fileImg,
+            AuthorIds: []
+          })
+        })
+    }
+  })
+
+  const handleUpdateBook = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
-      await AuthorService.createAuthor(authorData)
-      fatchNewAuthor()
-      setToggleAuthorForm(true)
-    } catch(error) {
+      const form = new FormData()
+      form.append('Id', bookForUpdate.Id.toString())
+      form.append('Title', bookForUpdate.Title)
+      form.append('Description', bookForUpdate.Description)
+      form.append('Isbn', bookForUpdate.ISBN)
+      form.append('Quantity', bookForUpdate.Quantity.toString())
+      form.append('Cover', fileImg)
+      form.append('PublishDate', bookForUpdate.PublishDate)
+      bookForUpdate.AuthorIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
+      await BookService.updateBook(form)
+      onClose()
+    } catch (error) {
       if(axios.isAxiosError(error)) {
         if(error.response?.status === 401) {
-          console.error(error)
+          alert('Not authenticated')
+        } else if (error.response?.status === 403) {
+          alert('Not authorized')
         }
       }
     }
-  }
+}
 
   const fatchNewAuthor = () => {
     AuthorService.getAuthors().then((response) => {
@@ -98,22 +104,10 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
     })
   }
 
-  useEffect(() => {
-    AuthorService.getAuthors()
-      .then(response => {
-        setAtuhors(response.data)
-      })
-  }, [])
-
-
-  const handleAuthorChange = (newAuthors: MultiValue<Author>) => {
-    setBooksData((prev) => ({ ...prev, AuthorIds: newAuthors as Author[] }))
-  }
-
   return ReactDOM.createPortal(
     <div className='overlay'>
       <div className='content'>
-        <form className='form_for_modal' onSubmit={hanlderCreateBooks}>
+        <form className='form_for_modal'>
           <div className='heder_modal'>
             <button
               type='button'
@@ -123,13 +117,14 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               <XIconForModal className='x_icon_for_modal'/>
             </button>
           </div>
-          <img className='modal_cover_img' src={coverImg ? coverImg : placeholder} />
+          <img className='modal_cover_img' src={cover ? cover : Placeholder}/>
           <div className='container_for_element'>
             <input
               type='text'
               className='input_for_title'
               placeholder='Title'
-              onChange={({ target }) => setBooksData((prevTitle) => ({ ...prevTitle, Title: target.value }))}
+              value={bookForUpdate.Title}
+              onChange={({ target }) => setBookForUpdate((prevTitle) => ({ ...prevTitle, Title: target.value }))}
             />
           </div>
           <div className='container_for_element'>
@@ -137,7 +132,8 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='text'
               className='input_for_description'
               placeholder='Description'
-              onChange={({ target }) => setBooksData((prevDescription) => ({ ...prevDescription, Description: target.value }))}
+              value={bookForUpdate.Description}
+              onChange={({ target }) => setBookForUpdate((prevDescription) => ({ ...prevDescription, Description: target.value }))}
             />
           </div>
           <div className='container_for_element'>
@@ -146,7 +142,8 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_isbn'
               placeholder='ISBN'
               pattern='^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$'
-              onChange={({ target }) => setBooksData((prevIsbn) => ({ ...prevIsbn, Isbn: target.value }))}
+              value={bookForUpdate.ISBN}
+              onChange={({ target }) => setBookForUpdate((prevIsbn) => ({ ...prevIsbn, Isbn: target.value }))}
             />
           </div>
           <div className='container_for_element'>
@@ -154,45 +151,46 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='text'
               className='input_for_quantity'
               placeholder='Quantity'
-              onChange={({ target }) => setBooksData((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
+              value={bookForUpdate.Quantity}
+              onChange={({ target }) => setBookForUpdate((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
             />
           </div>
           <div className='container_for_element'>
             <input
               type='date'
               className='input_for_date'
-              onChange={({ target }) => setBooksData((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
+              defaultValue={convertDateToString(bookForUpdate.PublishDate, 'yyyy-MM-dd')}
+              onChange={({ target }) => setBookForUpdate((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
             />
           </div>
           <div className='container_for_element'>
-            <input type='file' className='input_for_image' onChange={handleImgUpload}/>
+            <input type='file' className='input_for_image' onChange={handleImgUpload} />
           </div>
           <div className='container_for_element'>
-            <Select
-              name='authors'
-              id='authors'
-              className='select_for_authors'
-              getOptionLabel={(author : Author) => `${author.FirstName} ${author.LastName}`}
-              isMulti
-              getOptionValue={(option:Author) => option.Id.toString()}
-              options={authors}
-              onChange={handleAuthorChange}
-            />
+            {/* <Select
+            //   name='authors'
+            //   id='authors'
+            //   className='select_for_authors'
+            //   //getOptionLabel={}
+            //   isMulti
+            //  // getOptionValue={}
+            //   options={}
+            //   onChange={}
+            /> */}
             <div className='add_book_button' >
               <button
                 type='button'
-                className={ toggleAuthorForm ? 'button_for_add_book' : 'hiden_add_button'}
                 onClick={() => setToggleAuthorForm(false)}
               >
-                Add book <BookAddIcon/>
+                Add book
               </button>
             </div>
             <div className='container_for_element'>
-              <button type='submit' className={toggleAuthorForm ? 'submit_button_for_modal' : 'hidden_button_submit'}>Submit</button>
+              <button type='submit' >Submit</button>
             </div>
           </div>
         </form>
-        <form className={ toggleAuthorForm ? 'hiden_add_form' : 'add_author' } onSubmit={handleCreateAuthor}>
+        <form >
           <input
             type='text'
             className='input_for_author_firstname'
@@ -218,4 +216,4 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   )
 }
 
-export default ModalCreateBooks
+export default ModalForEdit

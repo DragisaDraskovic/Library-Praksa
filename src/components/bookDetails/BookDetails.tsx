@@ -7,9 +7,9 @@ import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 import { BookDetailsRequest } from '../../model/BookRequest'
 import BookService from '../../services/BookService'
-import { covnertDateToString } from '../../utils/ConvertDate'
 import ModalCreateBooks from '../modal/ModalCreateBooks'
-
+import ModalForEdit from '../modalForEdit/ModalForEdit'
+import { convertDateToString, s } from '../../utils/ConvertDate'
 
 
 
@@ -80,7 +80,7 @@ const BookDetails = () => {
           <p>Isbn:</p>
           <p>{bookDetails.ISBN}</p>
           <p>Publish Date:</p>
-          {bookDetails.PublishDate ? <p>{covnertDateToString(bookDetails.PublishDate)} </p> : '' }
+          {bookDetails.PublishDate ? <p>{s(bookDetails.PublishDate)} </p> : '' }
           <p>Authors:</p>
           {bookDetails.Authors &&
             bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
@@ -95,7 +95,7 @@ const BookDetails = () => {
         <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
         <button className='button_rent'>Rent</button>
       </div>
-      { isOpenEditModal && <ModalCreateBooks onClose={handleCloseModal} />}
+      { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
     </div>
   )
 }
