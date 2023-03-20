@@ -1,11 +1,9 @@
 import axios, { AxiosResponse } from 'axios'
 
-import TokenService from './TokenService'
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
 import config from '../utils/Config'
 
-// const token = TokenService.getAccesToken()
 
 interface GetBooksProps {
   PageNumber: number,
