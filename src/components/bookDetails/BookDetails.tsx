@@ -51,6 +51,7 @@ const BookDetails = () => {
     BookService.deleteBook(bookDetails.Id)
       .then(() => {
         navigate('/mainpage')
+        confirm('Are you sure to delete book?')
       })
       .catch((error) => {
         console.error(error)
@@ -69,7 +70,7 @@ const BookDetails = () => {
   return (
     <div className='container_for_details'>
       <button className='button_back' onClick={handleBack}><IconForBack/></button>
-      <div className='container_for_img'>
+       <div className='container_for_img'>
         <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
         <div className='container_for_text'>
           <p>Title:</p>
@@ -82,15 +83,15 @@ const BookDetails = () => {
           {bookDetails.PublishDate ? <p>{covnertDateToString(bookDetails.PublishDate)} </p> : '' }
           <p>Authors:</p>
           {bookDetails.Authors &&
-          bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
+            bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
           }
           <div className='container_for_quantity'>
             <p>Available {bookDetails.Quantity} books</p>
           </div>
         </div>
-      </div>
+       </div>
       <div className='container_for_button'>
-        <button className='button_edit'>Edit</button>
+        <button className='button_edit' onClick={handleEditBook}>Edit</button>
         <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
         <button className='button_rent'>Rent</button>
       </div>
