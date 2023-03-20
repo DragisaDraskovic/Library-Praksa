@@ -8,19 +8,19 @@ import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
 
 import BookService from '../../services/BookService'
+import { Author } from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
 import { BookRequest } from '../../model/Book'
-import { Author } from '../../model/Author'
 import AuthorRequest from '../../model/AuthoRequest'
 
 interface Modal {
   onClose: () => void
+  bookId?: number
 }
 
-
 const poratlDiv = document.getElementById('portal') as HTMLElement
-const ModalCreateBooks = ({ onClose } : Modal) => {
+const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const [ toggleAuthorForm , setToggleAuthorForm ] = useState(true)
   const [ authors, setAtuhors ] = useState<Author[]>([])
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
@@ -79,6 +79,7 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
+      const form = new FormData()
       await AuthorService.createAuthor(authorData)
       fatchNewAuthor()
       setToggleAuthorForm(true)
