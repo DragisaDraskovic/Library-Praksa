@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
+import { TfiBackLeft as IconForBack } from 'react-icons/tfi'
 
 import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
@@ -12,10 +13,10 @@ import ModalCreateBooks from '../modal/ModalCreateBooks'
 
 
 
+
 const BookDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [ isOpenEditModal, setIsOpenEditModal ] = useState(false)
 
   const [ bookDetails, setBookDetails ] = useState<BookDetailsRequest>(
     {
@@ -35,24 +36,6 @@ const BookDetails = () => {
     getBook()
   }, [ ])
 
-  const handleEditBook = () => {
-    setIsOpenEditModal(true)
-  }
-
-  const handleCloseModal = () => {
-    setIsOpenEditModal(false)
-  }
-
-  const handleDeleteBook = () => {
-    BookService.deleteBook(bookDetails.Id)
-    .then(() => {
-      navigate('/mainpage')
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-  }
-
   const getBook = () => {
     if(!id) return
     BookService.getBook(parseInt(id)).then((response) => {
@@ -66,9 +49,9 @@ const BookDetails = () => {
 
   return (
     <div className='container_for_details'>
-      <button className='button_back' onClick={handleBack}>back</button>
+      <button className='button_back' onClick={handleBack}><IconForBack/></button>
       <div className='container_for_img'>
-        <img className='card_img' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
+        <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
         <div className='container_for_text'>
           <p>Title:</p>
           <p>{bookDetails.Title}</p>
@@ -88,11 +71,10 @@ const BookDetails = () => {
         </div>
       </div>
       <div className='container_for_button'>
-        <button className='button_edit' onClick={handleEditBook}>Edit</button>
-        <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
+        <button className='button_edit'>Edit</button>
+        <button className='button_delete'>Delete</button>
         <button className='button_rent'>Rent</button>
       </div>
-      { isOpenEditModal && <ModalCreateBooks onClose={handleCloseModal} />}
     </div>
   )
 }

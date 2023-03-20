@@ -4,7 +4,6 @@ import TokenService from './TokenService'
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
 import { BookDetailsRequest } from '../model/BookRequest'
-import AxiosInterceptor from '../utils/AxiosInterceptors'
 
 
 const token = TokenService.getAccesToken()
@@ -29,7 +28,12 @@ const urlParams = ( getBookRequest : GetBooksProps) => {
 }
 
 const getAllBooks = ( getBookRequest : GetBooksProps) : Promise<AxiosResponse<BookResponse>> => {
-  const request = AxiosInterceptor.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(getBookRequest))
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const request = axios.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(getBookRequest), config)
   return request
 }
 

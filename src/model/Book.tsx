@@ -32,14 +32,3 @@ export interface Book {
     PublishDate: string
     Authors: Author[]
 }
-
-export interface OneBookRequest {
-    Id: number
-    Title: string
-    ISBN: string
-    Quantity: number
-    Description: string
-    PublishDate: string
-    Cover: string
-    AuthorIds: number[]
-}
