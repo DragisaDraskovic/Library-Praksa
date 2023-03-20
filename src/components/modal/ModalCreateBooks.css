@@ -132,7 +132,7 @@
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
-  
+  text-align: center;
 }
 
 .input_for_description:focus{

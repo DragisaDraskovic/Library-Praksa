@@ -1,52 +1,64 @@
 import { useEffect, useState } from 'react'
 
+import { AxiosResponse } from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Book } from '../../model/Book'
-import BookRequest from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
+import Search from '../search/Search'
+import BookResponse from '../../model/BookResponse'
+import { BooksRequest } from '../../model/BookRequest'
 
-const numberOfCard = 24
+const initialNumberCardForRendering = 6
 const BookList = () => {
-  const [ book, setBook ] = useState<Book[]>([])
+  const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
-  const [ pageNubmer, setPageNumber ] = useState(1)
-
-  useEffect(() => {
-    getDataBooks()
-  }, [ pageNubmer ])
+  const [ pageNumber, setPageNumber ] = useState(1)
+  const [ searchValue, setSearchValue ] = useState('')
+  const [ currentSearch, setCurrentSearch ] = useState<string>(searchValue)
 
   const nexPage = () => {
-    setPageNumber( pageNubmer + 1)
+    setPageNumber(pageNumber => pageNumber + 1)
   }
 
-  const getDataBooks = async () => {
-    const bookRequest : BookRequest = {
-      PageNumber: pageNubmer,
-      PageLength: numberOfCard
+  const getDataBooks = () => {
+    const bookRequest : BooksRequest = {
+      PageNumber: pageNumber,
+      PageLength: initialNumberCardForRendering,
+      Where: [ { Field: 'Title',Value: searchValue, Operation: 2 } ]
     }
-    try{
-      const response = await BookService.getAllBooks(bookRequest)
-      setHasMore(pageNubmer * numberOfCard <= response.data.TotalCount)
-      setBook([ ...book,...response.data.Items ])
-    } catch(error) {
-      console.error(error)
-    }
+    BookService.getAllBooks(bookRequest)
+      .then((response:AxiosResponse<BookResponse>) => {
+        const totalElements = response.data.TotalCount
+        setHasMore(pageNumber * initialNumberCardForRendering <= totalElements)
+        setBooks((books) => [ ...books,...response.data.Items ])
+      })
+      .catch((e) => console.error (e))
   }
+
+  useEffect(() => {
+    if(currentSearch !== searchValue) {
+      setBooks([])
+      setPageNumber(1)
+      setCurrentSearch(searchValue)
+    }
+    getDataBooks()
+  }, [ pageNumber, searchValue ])
+
   return (
     <div>
+      <Search setSearchValue={setSearchValue} />
       <InfiniteScroll
-        dataLength={book.length}
+        dataLength={books.length}
         next={nexPage}
         hasMore={hasMore}
         loader={<h4 className='loading_message'>Loading...</h4>}
         endMessage={<b className='end_message'>You have seen all books :( ...</b>}
-        scrollThreshold='75%'
       >
         <div className='container_for_bookList'>
-          {book.map((booksData) => <Card key={booksData.Id} book={booksData} /> )}
+          {books.map((booksData) => <Card key={booksData.Id} book={booksData} /> )}
         </div>
       </InfiniteScroll>
     </div>
