@@ -8,15 +8,10 @@ import BookService from '../../services/BookService'
 import Card from '../card/Card'
 import './BookList.css'
 import Search from '../search/Search'
-import Where from '../../model/Where'
 import BookResponse from '../../model/BookResponse'
+import { BooksRequest } from '../../model/BookRequest'
 
-interface BooksRequest {
-  PageNumber: number,
-  PageLength: number,
-  Where: Where[],
-}
-const initialItem = 6
+const initialNumberCardForRendering = 6
 const BookList = () => {
   const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)
@@ -31,13 +26,13 @@ const BookList = () => {
   const getDataBooks = () => {
     const bookRequest : BooksRequest = {
       PageNumber: pageNumber,
-      PageLength: initialItem,
+      PageLength: initialNumberCardForRendering,
       Where: [ { Field: 'Title',Value: searchValue, Operation: 2 } ]
     }
     BookService.getAllBooks(bookRequest)
       .then((response:AxiosResponse<BookResponse>) => {
         const totalElements = response.data.TotalCount
-        setHasMore(pageNumber * initialItem <= totalElements)
+        setHasMore(pageNumber * initialNumberCardForRendering <= totalElements)
         setBooks((books) => [ ...books,...response.data.Items ])
       })
       .catch((e) => console.error (e))

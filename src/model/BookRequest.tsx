@@ -1,8 +1,14 @@
 import Where from './Where'
 
-export default interface  BookRequest {
+export interface  BookRequest {
     PageNumber: number,
     PageLength: number,
     Search?: string,
     Filter: Where[]
 }
+
+export interface BooksRequest {
+    PageNumber: number,
+    PageLength: number,
+    Where: Where[],
+  }
