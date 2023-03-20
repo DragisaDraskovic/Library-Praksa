@@ -58,4 +58,12 @@
         height: 30px;
         width: 30px;
     }
+
+    .login_button {
+        position: fixed;
+        right: 10px;
+        background: green;
+        border-radius: 10px;
+        border-color: black;
+    }
 }

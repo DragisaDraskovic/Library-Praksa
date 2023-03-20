@@ -50,4 +50,17 @@
     border: inset 3px #6b6bcb;
 }
 
+.container_for_quantity {
+    background-color: rgb(151, 221, 46);
+    width: 130px;
+}
 
+.button_back {
+    border-radius: 5px;
+    position: absolute;
+    right: 50px;
+    width: 80px;
+    height: 30px;
+    top: 50px;
+    background: yellow;
+}

@@ -4,6 +4,7 @@ import TokenService from './TokenService'
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
 import { BookDetailsRequest } from '../model/BookRequest'
+import AxiosInterceptor from '../utils/AxiosInterceptors'
 
 
 const token = TokenService.getAccesToken()
@@ -28,12 +29,7 @@ const urlParams = ( getBookRequest : GetBooksProps) => {
 }
 
 const getAllBooks = ( getBookRequest : GetBooksProps) : Promise<AxiosResponse<BookResponse>> => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
-  const request = axios.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(getBookRequest), config)
+  const request = AxiosInterceptor.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged' + urlParams(getBookRequest))
   return request
 }
 
@@ -57,4 +53,13 @@ const getBook = (id: number) : Promise<AxiosResponse<BookDetailsRequest>> => {
   return respone
 }
 
-export default { getAllBooks, createBook, getBook }
+const deleteBook = (id: number) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  return axios.delete(process.env.REACT_APP_BASE_URL + `/api/Books/${id}`, config)
+}
+
+export default { getAllBooks, createBook, getBook, deleteBook }

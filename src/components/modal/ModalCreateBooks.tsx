@@ -11,19 +11,20 @@ import BookService from '../../services/BookService'
 import { Author } from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
-import { BookRequest } from '../../model/Book'
+import { BookRequest, OneBookRequest } from '../../model/Book'
 
 interface Modal {
   onClose: () => void
+  bookId?: number
 }
 
-
 const poratlDiv = document.getElementById('portal') as HTMLElement
-const ModalCreateBooks = ({ onClose } : Modal) => {
+const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const [ toggleAuthorForm , setToggleAuthorForm ] = useState(true)
   const [ authors, setAtuhors ] = useState<Author[]>([])
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
+  const [ bookForUpdate, setBookForUpdate ] = useState<OneBookRequest>()
   const [ booksData, setBooksData ] = useState<BookRequest>({
     Title: '',
     Description: '',
@@ -105,6 +106,24 @@ const ModalCreateBooks = ({ onClose } : Modal) => {
         setAtuhors(response.data)
       })
   }, [])
+
+  useEffect(() => {
+    if(bookId) {
+      BookService.getBook(bookId)
+      .then((response) => {
+        setBookForUpdate({
+          Id: bookId,
+          Title: response.data.Title,
+          Description: response.data.Description,
+          ISBN: response.data.ISBN,
+          Quantity: response.data.Quantity,
+          PublishDate: response.data.PublishDate,
+          Cover: response.data.Cover,
+          AuthorIds: response.data.Authors.map((author) => author.Id)
+        })
+      })
+    }
+  })
 
   const handleAuthorChange = (newAuthors: MultiValue<Author>) => {
     setBooksData((prev) => ({ ...prev, AuthorIds: newAuthors as Author[] }))
