@@ -28,7 +28,7 @@ const BookList = () => {
     setPageNumber(pageNumber => pageNumber + 1)
   }
 
-  const dataBooks = () => {
+  const getDataBooks = () => {
     const bookRequest : BooksRequest = {
       PageNumber: pageNumber,
       PageLength: initialItem,
@@ -49,7 +49,7 @@ const BookList = () => {
       setPageNumber(1)
       setCurrentSearch(searchValue)
     }
-    dataBooks()
+    getDataBooks()
   }, [ pageNumber, searchValue ])
 
   return (
