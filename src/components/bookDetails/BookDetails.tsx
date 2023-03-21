@@ -93,37 +93,7 @@ const BookDetails = () => {
         <button className='button_return'>Return</button>
         <button className='button_back'>Back</button>
       </div>
-      {/* <div className='container_for_quantity'>
-            <p>Available {bookDetails.Quantity} books</p>
-      </div> */}
       { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
-      {/* <button className='button_back' onClick={handleBack}>Main page<IconForBack/></button> */}
-      {/*<div className='container_for_img'>
-        <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
-        <div className='container_for_text'>
-          <p>Title:</p>
-          <p>{bookDetails.Title}</p>
-          <p>Description:</p>
-          <p>{bookDetails.Description}</p>
-          <p>Isbn:</p>
-          <p>{bookDetails.ISBN}</p>
-          <p>Publish Date:</p>
-          {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
-          <p>Authors:</p>
-          {bookDetails.Authors &&
-            bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
-          }
-          <div className='container_for_quantity'>
-            <p>Available {bookDetails.Quantity} books</p>
-          </div>
-        </div>
-      </div>
-      <div className='container_for_button'>
-        <button className='button_edit' onClick={handleEditBook}>Edit</button>
-        <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
-        <button className='button_rent'>Rent</button>
-      </div>
-      { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />} */}
     </div>
   )
 }

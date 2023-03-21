@@ -16,13 +16,6 @@
     height: 250px;
 }
 
-/* .button_back {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border-radius: 5px;
-    background: #f6f62c;
-} */
 @media only screen and (min-width: 750px  ) {
 
 .container_for_details {
