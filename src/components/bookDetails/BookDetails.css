@@ -1,4 +1,3 @@
-
 .container_for_details {
     width: 375px;
     margin-top: 25px;
@@ -16,44 +15,32 @@
     height: 250px;
 }
 
-.button_back {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border-radius: 5px;
-    background: #f6f62c;
-}
 @media only screen and (min-width: 750px  ) {
 
 .container_for_details {
-    width: auto;
-    height: auto;
-    gap: 20px;
-    background: #d6f3f8;
+    background-color: #d6f3f8;
+    width: 1200px;
+    height: 850px;
+    margin-left: 80px;
     display: flex;
-    flex-wrap: wrap;
-}
-
-.container_for_button {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 100px;
+    justify-content: flex-start;
 }
 
 .container_for_img {
-    
-}
-.card_img_for_book_details {
+    background-color: #d6f3f8;
+    width: 600px;
+    height: 600px;
     display: flex;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 150px;
 }
 
+
 .button_edit {
-    background: #6969e4;
+    background: #69e4;
     height: 40px;
     width: 150px;
     border-radius: 5px;
+    margin-top: 30px;
 }
 
 .button_delete {
@@ -61,6 +48,7 @@
     height: 40px;
     width: 150px;
     border-radius: 5px;
+    margin-top: 30px;
 }
 
 .button_rent {
@@ -68,16 +56,25 @@
     height: 40px;
     width: 150px;
     border-radius: 5px;
+    margin-top: 30px;
 }
 
 .container_for_text {
-    display: block;
+    background: #80d3e2;
+    border-radius: 5px;
+    width: 400px;
+    height: 70%;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
 }
 
 .card_img_for_book_details {
     border: inset 3px #6b6bcb;
-    height: 500px;
-    width: 500px;
+    height: 550px;
+    width: 550px;
 }
 
 .container_for_quantity {
@@ -85,28 +82,45 @@
     width: 130px;
 }
 
-.button_back {
-    border-radius: 5px;
-    position: absolute;
-    right: 50px;
-    width: 40px;
-    height: 30px;
-    top: 50px;
+.button_return {
     background: yellow;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.button_back {
+    background: yellow;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .container_for_button {
+    margin-left: 40px;
+    margin-top: 150px;
     display: flex;
-    position: absolute;
-    bottom: 100px;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-.foo-bar {
-    background: darkblue;
-    color: #fff;
-    font-size: 20px;
-    width: 34vw;
-    padding: 30px 20px;
+.container_for_available_green {
+    width: 200px;
+    height: 80px;
+    background: green;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.container_for_available_red {
+    width: 200px;
+    height: 80px;
+    background: red;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
 }
 }
