@@ -80,7 +80,6 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
-      // const form = new FormData()
       await AuthorService.createAuthor(authorData)
       fatchNewAuthor()
       setToggleAuthorForm(true)

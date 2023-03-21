@@ -7,9 +7,8 @@ import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 import { BookDetailsRequest } from '../../model/BookRequest'
 import BookService from '../../services/BookService'
-import ModalCreateBooks from '../modal/ModalCreateBooks'
 import ModalForEdit from '../modalForEdit/ModalForEdit'
-import { convertDateToString, s } from '../../utils/ConvertDate'
+import { convertDateToString } from '../../utils/ConvertDate'
 
 
 
@@ -50,8 +49,8 @@ const BookDetails = () => {
   const handleDeleteBook = () => {
     BookService.deleteBook(bookDetails.Id)
       .then(() => {
-        navigate('/mainpage')
-        confirm('Are you sure to delete book?')
+        confirm('Are you sure to delete book?') &&
+          navigate('/mainpage')
       })
       .catch((error) => {
         console.error(error)
@@ -80,7 +79,7 @@ const BookDetails = () => {
           <p>Isbn:</p>
           <p>{bookDetails.ISBN}</p>
           <p>Publish Date:</p>
-          {bookDetails.PublishDate ? <p>{s(bookDetails.PublishDate)} </p> : '' }
+          {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
           <p>Authors:</p>
           {bookDetails.Authors &&
             bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))

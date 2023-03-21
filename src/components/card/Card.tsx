@@ -26,11 +26,6 @@ const Card = ({ book } : CardProps) => {
           <p key={author.Id}> {author.FirstName} {author.LastName}</p>
         ))}
       </div>
-      {/* <div className='button_for_card'>
-        <button className='edit_button_for_card'>Edit</button>
-        <button className='delete_button_for_card'> Delete</button>
-        <button className='rent_button_for_card'>Rent</button>
-      </div> */}
     </div>
   )
 }

@@ -31,16 +31,16 @@ const Header = ( { isLogged, setIsLogged } : HeaderProps) => {
 
   return (
     <>
-    {isLogged
-     ?
-      <div className='header_container'>
-        <button className='logout_button' onClick={handleLogout}>Logout <LogoutIcon/></button>
-      </div>
-    :
-      <div className='header_container'>
-        <button className='login_button' onClick={handleLogin}>Login <LogoutIcon/></button>
-      </div>
-  }
+      {isLogged
+        ?
+        <div className='header_container'>
+          <button className='logout_button' onClick={handleLogout}>Logout <LogoutIcon/></button>
+        </div>
+        :
+        <div className='header_container'>
+          <button className='login_button' onClick={handleLogin}>Login <LogoutIcon/></button>
+        </div>
+      }
     </>
   )
 }

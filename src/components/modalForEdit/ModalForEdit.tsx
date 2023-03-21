@@ -11,14 +11,8 @@ import BookService from '../../services/BookService'
 import './ModalForEdit.css'
 import Placeholder from '../../assets/placeholder/placeholderForBook.png'
 import AuthorService from '../../services/AuthorService'
-import { Author } from '../../model/Author'
 import AuthorRequest from '../../model/AuthorRequest'
 import AuthorResponse from '../../model/AuthorResponse'
-import { BookRequestForUpdate, BookResponseForUpdate } from '../../model/Book'
-
-
-
-
 
 interface Modal {
     onClose: () => void
@@ -46,19 +40,6 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
     FirstName: '',
     LastName: ''
   })
-
-  const handleImgUpload = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
-    if (currentTarget.files) {
-      const files = currentTarget.files
-      const reader = new FileReader()
-      reader.readAsDataURL(files[0])
-      setFileImg(files[0])
-      reader.onloadend = function () {
-        const base64data = reader.result
-        if (base64data) setCover(base64data as string)
-      }
-    }
-  }
 
   useEffect(() => {
     if(bookId) {
@@ -94,6 +75,20 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
   useEffect(() => {
     fatchNewAuthor()
   })
+
+  const handleImgUpload = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
+    if (currentTarget.files) {
+      const files = currentTarget.files
+      const reader = new FileReader()
+      reader.readAsDataURL(files[0])
+      setFileImg(files[0])
+      reader.onloadend = function () {
+        const base64data = reader.result
+        if (base64data) setCover(base64data as string)
+      }
+    }
+  }
+
   const handleUpdateBook = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {

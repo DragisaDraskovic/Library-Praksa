@@ -26,14 +26,14 @@ const NavbarItems = (props : NavbarItemsProps ) => {
   }, [])
   return (
     <>
-    {
-      props.isLogged &&
+      {
+        props.isLogged &&
     <div className='navbar_item_container'>
       { isAdmin && <NavLink className='navbar_item_icon' to="/" onClick={props.setModalIsOpen}><PlusIconForNavbar size='30px'/></NavLink> }
       <NavLink className='navbar_item_icon' to="/book" ><HomeIconForNavbar size='30px' /></NavLink>
       <NavLink className='navbar_item_icon' to="/login" ><AdminIconForNavbar size='30px' /></NavLink>
     </div>
-    }
+      }
     </>
   )
 }
