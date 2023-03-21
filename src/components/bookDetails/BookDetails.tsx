@@ -10,6 +10,7 @@ import BookService from '../../services/BookService'
 import ModalForEdit from '../modalForEdit/ModalForEdit'
 import { convertDateToString } from '../../utils/ConvertDate'
 import RentalServices from '../../services/RentalServices'
+import { RentBookHistory } from '../../model/Rent'
 
 
 
@@ -19,6 +20,7 @@ const BookDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [ isOpenEditModal, setIsOpenEditModal ] = useState(false)
+  const [ rentalBooksHistory, setRentalBooksHistory ] = useState<RentBookHistory[]>([])
   const [ bookDetails, setBookDetails ] = useState<BookDetailsRequest>(
     {
       Id: 0,
@@ -32,9 +34,9 @@ const BookDetails = () => {
       Quantity: 0
     }
   )
-
   useEffect(() => {
     getBook()
+    getHistoryBooks()
   }, [ ])
 
   const getBook = () => {
@@ -42,6 +44,14 @@ const BookDetails = () => {
     BookService.getBook(parseInt(id)).then((response) => {
       setBookDetails(response.data)
     }).catch((error) => console.error(error))
+  }
+
+  const getHistoryBooks = () => {
+    RentalServices.getBookHistory(Number(id))
+      .then((response) => {
+        setRentalBooksHistory(response.data)
+      }
+      )
   }
 
   const handleBack = () => {
@@ -68,52 +78,81 @@ const BookDetails = () => {
   }
 
   const handleRentBook = () => {
-    console.log(bookDetails.Id)
     RentalServices.rentBook(bookDetails.Id)
       .then(() => {
         toast.success('Success rent book', {
           position: toast.POSITION.TOP_RIGHT
         })
+        getBook()
+        getHistoryBooks()
       })
   }
 
-  const handleReturnBook = () => {
-    console.log('return')
+  const handleReturnBook = (id: number) => {
+    RentalServices.returnBook(id).then(() => {
+      toast.success(`${bookDetails.Title} has been returned`)
+      getHistoryBooks()
+      getBook()
+    })
   }
 
+
   return (
-    <div className='container_for_details'>
-      <div className='container_for_img'>
-        <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
-      </div>
-      <div className='container_for_text'>
-        <p>Title:</p>
-        <p>{bookDetails.Title}</p>
-        <p>Description:</p>
-        <p>{bookDetails.Description}</p>
-        <p>Isbn:</p>
-        <p>{bookDetails.ISBN}</p>
-        <p>Publish Date:</p>
-        {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
-        <p>Authors:</p>
-        {bookDetails.Authors &&
-            bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
-        }
-        <div className={bookDetails.Available > 0 ? 'container_for_available_green' : 'container_for_available_red'}>
-          <p>Available:</p>
-          {bookDetails.Available}
+    <>
+      <div className='container_for_details'>
+        <div className='container_for_img'>
+          <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
+          <div className={bookDetails.Available > 0 ? 'container_for_available_green' : 'container_for_available_red'}>
+            <p>Available:</p>
+            {bookDetails.Available}
+          </div>
         </div>
+        <div className='container_for_text'>
+          <p>Title:</p>
+          <p>{bookDetails.Title}</p>
+          <p>Description:</p>
+          <p>{bookDetails.Description}</p>
+          <p>Isbn:</p>
+          <p>{bookDetails.ISBN}</p>
+          <p>Publish Date:</p>
+          {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
+          <p>Authors:</p>
+          {bookDetails.Authors &&
+            bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
+          }
+        </div>
+        <div className='container_for_button'>
+          <button className='button_edit' onClick={handleEditBook}>Edit</button>
+          <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
+          <button className='button_rent' onClick={handleRentBook}>Rent</button>
+          <button className='button_back' onClick={handleBack}>Back</button>
+        </div>
+        { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
+        <ToastContainer />
       </div>
-      <div className='container_for_button'>
-        <button className='button_edit' onClick={handleEditBook}>Edit</button>
-        <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
-        <button className='button_rent' onClick={handleRentBook}>Rent</button>
-        <button className='button_return' onClick={handleReturnBook}>Return</button>
-        <button className='button_back' onClick={handleBack}>Back</button>
+      <div className='container_for_table'>
+        <table className='table_container'>
+          <thead>
+            <tr>
+              <th>Rent date</th>
+              <th>Is returned</th>
+              <th>User Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rentalBooksHistory.map(( book ) => {
+              return(
+                <tr key={book.Id}>
+                  <td>{convertDateToString(book.RentDate)}</td>
+                  <td>{book.IsReturned ? 'yes' : <button className='return_button' onClick={() => {handleReturnBook(book.Id)}}>Return</button>}</td>
+                  <td>{book.User.Email}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
-      { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
-      <ToastContainer />
-    </div>
+    </>
   )
 }
 
