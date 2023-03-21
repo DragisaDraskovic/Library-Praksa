@@ -33,7 +33,7 @@ const BookDetails = () => {
 
   useEffect(() => {
     getBook()
-  }, [ ])
+  }, [])
 
   const getBook = () => {
     if(!id) return
@@ -47,14 +47,15 @@ const BookDetails = () => {
   }
 
   const handleDeleteBook = () => {
-    BookService.deleteBook(bookDetails.Id)
-      .then(() => {
-        confirm('Are you sure to delete book?') &&
+    if(confirm('Are you sure to delete book?')) {
+      BookService.deleteBook(bookDetails.Id)
+        .then(() => {
           navigate('/mainpage')
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
 
   const handleEditBook = () => {
@@ -69,7 +70,7 @@ const BookDetails = () => {
   return (
     <div className='container_for_details'>
       <button className='button_back' onClick={handleBack}><IconForBack/></button>
-       <div className='container_for_img'>
+      <div className='container_for_img'>
         <img className='card_img_for_book_details' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : placeholderImg}/>
         <div className='container_for_text'>
           <p>Title:</p>
@@ -88,7 +89,7 @@ const BookDetails = () => {
             <p>Available {bookDetails.Quantity} books</p>
           </div>
         </div>
-       </div>
+      </div>
       <div className='container_for_button'>
         <button className='button_edit' onClick={handleEditBook}>Edit</button>
         <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
