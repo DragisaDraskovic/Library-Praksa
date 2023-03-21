@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import TokenService from '../../services/TokenService'
 import BookList from '../bookList/BookList'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
-import Login from '../login/Login'
 import ModalCreateBooks from '../modal/ModalCreateBooks'
 import NavbarItems from '../navbarItems/NavbarItems'
+import 'react-toastify/dist/ReactToastify.css'
 
 import './MainPage.css'
 
@@ -37,6 +37,7 @@ const MainPage = () => {
       <BookList />
       { modalIsOpen && <ModalCreateBooks onClose={handleModalToggle}/>}
       <Footer setModalIsOpen={handleModalToggle}/>
+      <ToastContainer />
     </div>
   )
 }

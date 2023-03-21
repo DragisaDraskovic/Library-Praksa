@@ -101,4 +101,12 @@
     bottom: 100px;
     justify-content: space-between;
 }
+
+.foo-bar {
+    background: darkblue;
+    color: #fff;
+    font-size: 20px;
+    width: 34vw;
+    padding: 30px 20px;
+}
 }

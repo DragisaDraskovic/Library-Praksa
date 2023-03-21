@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { TfiBackLeft as IconForBack } from 'react-icons/tfi'
+import { toast, ToastContainer } from 'react-toastify'
 
 import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
@@ -9,6 +10,8 @@ import { BookDetailsRequest } from '../../model/BookRequest'
 import BookService from '../../services/BookService'
 import ModalForEdit from '../modalForEdit/ModalForEdit'
 import { convertDateToString } from '../../utils/ConvertDate'
+import RentalServices from '../../services/RentalServices'
+
 
 
 
@@ -65,6 +68,16 @@ const BookDetails = () => {
     setIsOpenEditModal(false)
   }
 
+  const handleRentBook = () => {
+    console.log('rent')
+    console.log(bookDetails.Id)
+    RentalServices.rentBook(bookDetails.Id)
+      .then(() => {
+        toast.success('Success rent book', {
+          position: toast.POSITION.TOP_RIGHT
+        })
+      })
+  }
 
   return (
     <div className='container_for_details'>
@@ -92,9 +105,10 @@ const BookDetails = () => {
       <div className='container_for_button'>
         <button className='button_edit' onClick={handleEditBook}>Edit</button>
         <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
-        <button className='button_rent'>Rent</button>
+        <button className='button_rent' onClick={handleRentBook}>Rent</button>
       </div>
       { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
+      <ToastContainer />
     </div>
   )
 }
