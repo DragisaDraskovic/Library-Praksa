@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios'
 
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
-import { BookDetailsRequest } from '../model/BookRequest'
 import config from '../utils/Config'
+
 
 interface GetBooksProps {
   PageNumber: number,
