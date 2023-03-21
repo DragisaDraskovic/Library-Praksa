@@ -80,7 +80,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
-      const form = new FormData()
+      // const form = new FormData()
       await AuthorService.createAuthor(authorData)
       fatchNewAuthor()
       setToggleAuthorForm(true)
@@ -110,6 +110,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const handleAuthorChange = (newAuthors: MultiValue<Author>) => {
     setBooksData((prev) => ({ ...prev, AuthorIds: newAuthors as Author[] }))
   }
+
 
   return ReactDOM.createPortal(
     <div className='overlay'>

@@ -14,7 +14,7 @@ export interface BooksRequest {
     Where: Where[],
   }
 
-  export interface BookDetailsRequest {
+export interface BookDetailsRequest {
     Id: number,
     Title: string
     Description: string,

@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
 
+
 import BookResponse from '../model/BookResponse'
 import Where from '../model/Where'
 import config from '../utils/Config'
+import { BookDetailsRequest } from '../model/BookRequest'
 
 
 interface GetBooksProps {
@@ -44,7 +46,7 @@ const deleteBook = (id: number) => {
 }
 
 const updateBook = (updateData: FormData) => {
-  return axios.put(process.env.REACT_APP_BASE_URL + '/api/books', updateData)
+  return axios.put(process.env.REACT_APP_BASE_URL + '/api/books', updateData, config)
 }
 
 export default { getAllBooks, createBook, getBook, deleteBook, updateBook }
