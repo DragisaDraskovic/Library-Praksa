@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import './ModalCreateBooks.css'
 import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BsFillFilePersonFill as AuthorIcon } from 'react-icons/bs'
+import { toast } from 'react-toastify'
 
 import BookService from '../../services/BookService'
 import { Author } from '../../model/Author'
@@ -13,6 +14,7 @@ import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
 import { BookRequest, OneBookRequest } from '../../model/Book'
 import AuthorRequest from '../../model/AuthoRequest'
+
 
 interface Modal {
   onClose: () => void
@@ -67,6 +69,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
       form.append('PublishDate', booksData.PublishDate)
       booksData.AuthorIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
       await BookService.createBook(form)
+      toast.success(`Success create ${booksData.Title} book`)
       onClose()
     } catch(error) {
       if(axios.isAxiosError(error)) {
@@ -134,6 +137,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               placeholder='Title'
               onChange={({ target }) => setBooksData((prevTitle) => ({ ...prevTitle, Title: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -143,6 +147,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               placeholder='Description'
               onChange={({ target }) => setBooksData((prevDescription) => ({ ...prevDescription, Description: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -153,6 +158,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               pattern='^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$'
               onChange={({ target }) => setBooksData((prevIsbn) => ({ ...prevIsbn, Isbn: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -162,6 +168,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               placeholder='Quantity'
               onChange={({ target }) => setBooksData((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -170,6 +177,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_date'
               onChange={({ target }) => setBooksData((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -178,6 +186,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_image'
               onChange={handleImgUpload}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -190,6 +199,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               getOptionValue={(option:Author) => option.Id.toString()}
               options={authors}
               onChange={handleAuthorChange}
+              required
             />
             <div className='add_book_button' >
               <button

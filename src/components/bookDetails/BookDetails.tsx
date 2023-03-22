@@ -65,6 +65,7 @@ const BookDetails = () => {
 
   const handleDeleteBook = () => {
     if(confirm('Are you sure to delete book?')) {
+      toast.success(`Success delete ${bookDetails.Title} book`)
       BookService.deleteBook(bookDetails.Id)
         .then(() => {
           navigate('/mainpage')
@@ -136,7 +137,7 @@ const BookDetails = () => {
           </div>
           <div className='description_container'>
             <h4>Description:</h4>
-            <p>{bookDetails.Description}</p>
+            <p>{bookDetails.Description.substring(0,30)}</p>
           </div>
           <h4>Authors:</h4>
           <div className='container_author'>

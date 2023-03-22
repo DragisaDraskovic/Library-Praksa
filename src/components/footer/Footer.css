@@ -1,9 +1,7 @@
 
-.footer_icon {
-    width: 60px;
-    height: 30px;
-    margin-top: 7px;
-    color: black;
+.button_footer {
+    border: none;
+    background: #0c6aa7;
 }
 
 .footer {
@@ -15,6 +13,44 @@
     height: 60px;
     background-color: #0c6aa7;
     left: 0;
+}
+
+.navbar_item_button_login {
+    border: none;
+    background: #0c6aa7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_logout {
+    border: none;
+    background: #0c6aa7;
+    margin-right: 50px;
+}
+
+.button_star {
+    border: none;
+    background: #0c6aa7;
+    margin-left: 50px;
+}
+
+.button_home {
+    border: none;
+    background: #0c6aa7;
+    margin-left: 50px;
+}
+
+.button_login {
+    position: absolute;
+    right: 20px;
+    border: none;
+    background: #0c6aa7;
+    top: 15px;
+}
+
+.p_author {
+    margin: 5px
 }
 
 @media only screen and (min-width: 750px  ) {

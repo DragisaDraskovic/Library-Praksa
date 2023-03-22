@@ -19,15 +19,41 @@
         width: 90px;
     }
 
-    .navbar_item_icon {
-        color: black;
-        align-self: center;
-        margin-right: 10px;
-        padding-bottom: 80px;
-        width: 20px;
-        height: 20px;
+    .logout_button {
+        position: fixed;
+        display: flex;
+        flex-wrap: wrap;
+        right: 10px;
+        background: #d6f3f8;
+        border-radius: 10px;
+        border-color: black;
+        width: 40px;
+        height: 40px;
     }
 
+    .navbar_item_button_logout {
+        margin: 20px;
+        border-radius: 10px;
+        border-color: black;
+        background: #d6f3f8;
+        width: 50px;
+        height: 40px;
+    }
+
+    .navbar_item_button_login {
+        margin: 20px;
+        border-radius: 10px;
+        border-color: black;
+        background: #d6f3f8;
+        width: 50px;
+        height: 40px;
+    }
+
+    .navbar_item_button {
+        background-color: #0c6aa7;
+        border: none;
+        margin: 20px;
+    }
     .navbar_close {
         width: 25px;
         margin: 20px;

@@ -5,6 +5,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { GrClose as XIconForModal } from 'react-icons/gr'
 import { BsFillFilePersonFill as AuthorIcon } from 'react-icons/bs'
+import { toast } from 'react-toastify'
 
 import { BookRequestForEdit } from '../../model/BookRequestEdit'
 import BookService from '../../services/BookService'
@@ -13,6 +14,7 @@ import Placeholder from '../../assets/placeholder/placeholderForBook.png'
 import AuthorService from '../../services/AuthorService'
 import AuthorRequest from '../../model/AuthorRequest'
 import AuthorResponse from '../../model/AuthorResponse'
+
 
 interface Modal {
     onClose: () => void
@@ -101,6 +103,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
       form.append('Cover', fileImg)
       form.append('PublishDate', new Intl.DateTimeFormat('en-US').format(new Date(bookForUpdate.PublishDate)))
       selectedAuthors.forEach(author => form.append('AuthorIds', author.Id.toString()))
+      toast.success(`Success edit ${bookForUpdate.Title} book`)
       await BookService.updateBook(form)
       onClose()
       window.location.reload();
@@ -172,6 +175,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               value={bookForUpdate.Title}
               onChange={({ target }) => setBookForUpdate((prevTitle) => ({ ...prevTitle, Title: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -182,6 +186,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               value={bookForUpdate.Description}
               onChange={({ target }) => setBookForUpdate((prevDescription) => ({ ...prevDescription, Description: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -193,6 +198,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               value={bookForUpdate.ISBN}
               onChange={({ target }) => setBookForUpdate((prevIsbn) => ({ ...prevIsbn, ISBN: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -203,6 +209,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               value={bookForUpdate.Quantity}
               onChange={({ target }) => setBookForUpdate((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -212,6 +219,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               value={bookForUpdate.PublishDate ? new Intl.DateTimeFormat('en-CA').format(new Date(bookForUpdate.PublishDate)) : ''}
               onChange={({ target }) => setBookForUpdate((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
               disabled={!toggleAuthorForm && true }
+              required
             />
           </div>
           <div className='container_for_element'>
@@ -233,6 +241,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               options={authorList}
               onChange={handleSelectedAuthorsChange}
               value={selectedAuthors}
+              required
             />
             <div className='add_book_button' >
               <button

@@ -19,4 +19,9 @@ const getBookHistory = (bookId: number) => {
   return response
 }
 
-export default { rentBook, returnBook, getBookHistory }
+const getMostRented = (count : number) => {
+  const response = axios.get(process.env.REACT_APP_BASE_URL + `/api/Rental/top/${count}`,config)
+  return response
+}
+
+export default { rentBook, returnBook, getBookHistory, getMostRented }
