@@ -4,7 +4,7 @@ import Select ,{ MultiValue } from 'react-select'
 import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { GrClose as XIconForModal } from 'react-icons/gr'
-import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
+import { BsFillFilePersonFill as AuthorIcon } from 'react-icons/bs'
 
 import { BookRequestForEdit } from '../../model/BookRequestEdit'
 import BookService from '../../services/BookService'
@@ -116,6 +116,8 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
   }
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setAuthorData((prevFirstName) => ({ ...prevFirstName, FirstName: '' }))
+    setAuthorData(( prevLastName) => ({ ...prevLastName, LastName: '' }))
     try {
       await AuthorService.createAuthor(authorData)
       setToggleAuthorForm(true)
@@ -169,6 +171,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               placeholder='Title'
               value={bookForUpdate.Title}
               onChange={({ target }) => setBookForUpdate((prevTitle) => ({ ...prevTitle, Title: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -178,6 +181,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               placeholder='Description'
               value={bookForUpdate.Description}
               onChange={({ target }) => setBookForUpdate((prevDescription) => ({ ...prevDescription, Description: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -188,6 +192,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               pattern='^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$'
               value={bookForUpdate.ISBN}
               onChange={({ target }) => setBookForUpdate((prevIsbn) => ({ ...prevIsbn, ISBN: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -197,6 +202,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               placeholder='Quantity'
               value={bookForUpdate.Quantity}
               onChange={({ target }) => setBookForUpdate((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -205,10 +211,16 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
               className='input_for_date'
               value={bookForUpdate.PublishDate ? new Intl.DateTimeFormat('en-CA').format(new Date(bookForUpdate.PublishDate)) : ''}
               onChange={({ target }) => setBookForUpdate((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
-            <input type='file' className='input_for_image' onChange={handleImgUpload} />
+            <input
+              type='file'
+              className='input_for_image'
+              onChange={handleImgUpload}
+              disabled={!toggleAuthorForm && true }
+            />
           </div>
           <div className='container_for_element'>
             <Select
@@ -228,7 +240,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
                 onClick={() => setToggleAuthorForm(false)}
                 className={ toggleAuthorForm ? 'button_for_add_book' : 'hiden_add_button'}
               >
-                Add book <BookAddIcon/>
+                Add authors <AuthorIcon/>
               </button>
             </div>
             <div className='container_for_element'>
@@ -242,6 +254,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
             className='input_for_author_firstname'
             required placeholder='Enter first name'
             onChange={({ target }) => setAuthorData((prevFirstName) => ({ ...prevFirstName, FirstName: target.value }))}
+            value={authorData.FirstName}
           />
           <input
             type='text'
@@ -249,6 +262,7 @@ const ModalForEdit = ({ onClose, bookId } : Modal) => {
             required
             placeholder='Enter last name'
             onChange={({ target }) => setAuthorData(( prevLastName) => ({ ...prevLastName, LastName: target.value }))}
+            value={authorData.LastName}
           />
           <div className='container_for_author_button'>
             <button type='submit' className='button_for_add_author' onClick={fatchNewAuthor}>Add</button>

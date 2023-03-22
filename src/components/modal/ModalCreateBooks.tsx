@@ -5,7 +5,7 @@ import Select, { MultiValue } from 'react-select'
 import ReactDOM from 'react-dom'
 import './ModalCreateBooks.css'
 import { GrClose as XIconForModal } from 'react-icons/gr'
-import { BiBookAdd as BookAddIcon } from 'react-icons/bi'
+import { BsFillFilePersonFill as AuthorIcon } from 'react-icons/bs'
 
 import BookService from '../../services/BookService'
 import { Author } from '../../model/Author'
@@ -79,6 +79,8 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
 
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setAuthorData(( prevFirstName) => ({ ...prevFirstName, FirstName: '' }))
+    setAuthorData(( prevLastName) => ({ ...prevLastName, LastName: '' }))
     try {
       await AuthorService.createAuthor(authorData)
       fatchNewAuthor()
@@ -131,6 +133,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_title'
               placeholder='Title'
               onChange={({ target }) => setBooksData((prevTitle) => ({ ...prevTitle, Title: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -139,6 +142,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_description'
               placeholder='Description'
               onChange={({ target }) => setBooksData((prevDescription) => ({ ...prevDescription, Description: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -148,6 +152,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               placeholder='ISBN'
               pattern='^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$'
               onChange={({ target }) => setBooksData((prevIsbn) => ({ ...prevIsbn, Isbn: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -156,6 +161,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_quantity'
               placeholder='Quantity'
               onChange={({ target }) => setBooksData((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
@@ -163,10 +169,16 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='date'
               className='input_for_date'
               onChange={({ target }) => setBooksData((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
+              disabled={!toggleAuthorForm && true }
             />
           </div>
           <div className='container_for_element'>
-            <input type='file' className='input_for_image' onChange={handleImgUpload}/>
+            <input
+              type='file'
+              className='input_for_image'
+              onChange={handleImgUpload}
+              disabled={!toggleAuthorForm && true }
+            />
           </div>
           <div className='container_for_element'>
             <Select
@@ -185,7 +197,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
                 className={ toggleAuthorForm ? 'button_for_add_book' : 'hiden_add_button'}
                 onClick={() => setToggleAuthorForm(false)}
               >
-                Add book <BookAddIcon/>
+                Add authors <AuthorIcon/>
               </button>
             </div>
             <div className='container_for_element'>
