@@ -14,10 +14,16 @@ interface GetBooksProps {
 }
 
 const getAllBooks = ( getBookRequest : GetBooksProps) : Promise<AxiosResponse<BookResponse>> => {
-  const request = axios.get<BookResponse>(process.env.REACT_APP_BASE_URL + '/api/Books/paged', { ...config, params: {
-    PageNumber: getBookRequest.PageNumber,
-    PageLenght: getBookRequest.PageLength
-  } })
+  const request = axios.get<BookResponse>(
+    process.env.REACT_APP_BASE_URL + '/api/Books/paged',
+    {
+      ...config,
+      params: {
+        PageNumber: getBookRequest.PageNumber,
+        PageLenght: getBookRequest.PageLength
+      }
+    }
+  )
   return request
 }
 

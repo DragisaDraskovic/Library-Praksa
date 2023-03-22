@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import jwtDecode from 'jwt-decode'
 
 import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
@@ -11,6 +12,9 @@ import ModalForEdit from '../modalForEdit/ModalForEdit'
 import { convertDateToString } from '../../utils/ConvertDate'
 import RentalServices from '../../services/RentalServices'
 import { RentBookHistory } from '../../model/Rent'
+import TokenService from '../../services/TokenService'
+import { isUserRegularUser } from '../../utils/Roles'
+import { Jwt, roleKey } from '../../model/JWT'
 
 
 
@@ -20,6 +24,7 @@ const BookDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [ isOpenEditModal, setIsOpenEditModal ] = useState(false)
+  const [ isUser, setIsUser ] = useState(false)
   const [ rentalBooksHistory, setRentalBooksHistory ] = useState<RentBookHistory[]>([])
   const [ bookDetails, setBookDetails ] = useState<BookDetailsRequest>(
     {
@@ -69,6 +74,14 @@ const BookDetails = () => {
       })
   }
 
+
+  useEffect(() => {
+    const token = TokenService.getAccesToken()
+    if(token) {
+      setIsUser(isUserRegularUser(jwtDecode<Jwt>(token)[roleKey]))
+    }
+  }, [])
+
   const handleEditBook = () => {
     setIsOpenEditModal(true)
   }
@@ -108,28 +121,54 @@ const BookDetails = () => {
           </div>
         </div>
         <div className='container_for_text'>
-          <p>Title:</p>
-          <p>{bookDetails.Title}</p>
-          <p>Description:</p>
-          <p>{bookDetails.Description}</p>
-          <p>Isbn:</p>
-          <p>{bookDetails.ISBN}</p>
-          <p>Publish Date:</p>
-          {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
-          <p>Authors:</p>
-          {bookDetails.Authors &&
-            bookDetails.Authors.map((author) => ( <p key={author.Id}>{author.Firstname} {author.Lastname} </p>))
-          }
+          <div className='title_container'>
+            <h4>Title:</h4>
+            <p>{bookDetails.Title}</p>
+          </div>
+          <div className='isbn_container'>
+            <h4>Isbn:</h4>
+            <p>{bookDetails.ISBN}</p>
+          </div>
+          <div className='date_container'>
+            <h4>Publish Date:</h4>
+            {bookDetails.PublishDate ? <p>{convertDateToString(bookDetails.PublishDate)} </p> : '' }
+          </div>
+          <div className='description_container'>
+            <h4>Description:</h4>
+            <p>{bookDetails.Description}</p>
+          </div>
+          <h4>Authors:</h4>
+          <div className='container_author'>
+            {bookDetails.Authors &&
+            bookDetails.Authors.map((author) => ( <p key={author.Id} className='p_tag_for_author'>{author.Firstname} {author.Lastname} </p>))
+            }
+          </div>
         </div>
-        <div className='container_for_button'>
-          <button className='button_edit' onClick={handleEditBook}>Edit</button>
-          <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
+        {/* <div className='container_for_button'>
+          <button className={isUser ? 'button_edit_close' : 'button_edit'} onClick={handleEditBook}>Edit</button>
+          <button className={ isUser ? 'button_delete_close' :'button_delete'} onClick={handleDeleteBook}>Delete</button>
           <button className='button_rent' onClick={handleRentBook}>Rent</button>
           <button className='button_back' onClick={handleBack}>Back</button>
-        </div>
+        </div> */}
+        { !isUser
+          ?
+          <div className='container_for_button'>
+            <button className='button_edit' onClick={handleEditBook}>Edit</button>
+            <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
+            <button className='button_rent' onClick={handleRentBook}>Rent</button>
+            <button className='button_back' onClick={handleBack}>Back</button>
+          </div>
+          :
+          <div className='container_for_button_user'>
+            <button className='button_rent' onClick={handleRentBook}>Rent</button>
+            <button className='button_back' onClick={handleBack}>Back</button>
+          </div>
+        }
         { isOpenEditModal && <ModalForEdit onClose={handleCloseModal} bookId={Number(id)} />}
         <ToastContainer />
       </div>
+      { !isUser
+      &&
       <div className='container_for_table'>
         <table className='table_container'>
           <thead>
@@ -152,6 +191,7 @@ const BookDetails = () => {
           </tbody>
         </table>
       </div>
+      }
     </>
   )
 }
