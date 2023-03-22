@@ -29,14 +29,6 @@
     border-color: black;
 }
 
-.login_button {
-    position: fixed;
-    right: 10px;
-    background: #8fd9e4;;
-    border-radius: 10px;
-    border-color: black;
-}
-
 @media only screen and (min-width: 750px  ) {
 
     .header_input_search {
@@ -51,10 +43,14 @@
 
     .logout_button {
         position: fixed;
+        display: flex;
+        flex-wrap: wrap;
         right: 10px;
-        background: #f23427;
+        background: #d6f3f8;
         border-radius: 10px;
         border-color: black;
+        width: 40px;
+        height: 40px;
     }
 
     .button_for_navbar {
@@ -70,7 +66,7 @@
     .login_button {
         position: fixed;
         right: 10px;
-        background: green;
+        background: #d6f3f8;
         border-radius: 10px;
         border-color: black;
     }
