@@ -1,0 +1,108 @@
+
+.container_for_details {
+    width: 375px;
+    margin-top: 25px;
+    height: 800px;
+}
+
+.container_for_img {
+    width: 30px;
+    height: 30pxs;
+}
+
+.card_img_for_book_details {
+    margin-left: 65px;
+    width: 250px;
+    height: 250px;
+}
+
+@media only screen and (min-width: 750px  ) {
+
+.container_for_details {
+    background-color: #d6f3f8;
+    width: 1200px;
+    height: 850px;
+    margin-left: 80px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container_for_img {
+    background-color: #d6f3f8;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    margin-top: 150px;
+}
+
+
+.button_edit {
+    background: #69e4;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.button_delete {
+    background: #ff3333;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.button_rent {
+    background: #bef0be;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.container_for_text {
+    background: #80d3e2;
+    border-radius: 5px;
+    width: 400px;
+    height: 70%;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
+}
+
+.card_img_for_book_details {
+    border: inset 3px #6b6bcb;
+    height: 550px;
+    width: 550px;
+}
+
+.container_for_quantity {
+    background-color: rgb(151, 221, 46);
+    width: 130px;
+}
+
+.button_return {
+    background: yellow;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.button_back {
+    background: yellow;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.container_for_button {
+    margin-left: 40px;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+}
+}

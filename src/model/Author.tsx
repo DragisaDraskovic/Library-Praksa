@@ -3,3 +3,9 @@ export interface Author {
     FirstName: string
     LastName: string
 }
+
+export interface AuthorBookDetails {
+    Id: number,
+    Firstname: string,
+    Lastname: string
+}

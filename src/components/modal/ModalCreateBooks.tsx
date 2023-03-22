@@ -11,7 +11,7 @@ import BookService from '../../services/BookService'
 import { Author } from '../../model/Author'
 import AuthorService from '../../services/AuthorService'
 import placeholder from '../../assets/placeholder/placeholderForBook.png'
-import { BookRequest } from '../../model/Book'
+import { BookRequest, OneBookRequest } from '../../model/Book'
 import AuthorRequest from '../../model/AuthoRequest'
 
 interface Modal {
@@ -25,6 +25,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const [ authors, setAtuhors ] = useState<Author[]>([])
   const [ fileImg, setFileImg ] = useState<Blob>(new Blob())
   const [ coverImg, setCoverImg ] = useState('')
+  const [ bookForUpdate, setBookForUpdate ] = useState<OneBookRequest>()
   const [ booksData, setBooksData ] = useState<BookRequest>({
     Title: '',
     Description: '',
@@ -79,7 +80,6 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
   const handleCreateAuthor = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
-      const form = new FormData()
       await AuthorService.createAuthor(authorData)
       fatchNewAuthor()
       setToggleAuthorForm(true)
@@ -105,9 +105,11 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
       })
   }, [])
 
+
   const handleAuthorChange = (newAuthors: MultiValue<Author>) => {
     setBooksData((prev) => ({ ...prev, AuthorIds: newAuthors as Author[] }))
   }
+
 
   return ReactDOM.createPortal(
     <div className='overlay'>

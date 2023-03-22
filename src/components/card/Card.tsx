@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Book } from '../../model/Book'
 import './Card.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
+
 
 interface CardProps {
   book: Book
 }
 
 const Card = ({ book } : CardProps) => {
+  const navigate = useNavigate()
   return (
-    <div className='card_container'>
+    <div className='card_container' onClick={() => navigate(`/BookDetails/${book.Id}`)}>
       <img className='card_img' src={book.Cover ? `data: image/png;base64, ${book.Cover}` : placeholderImg} />
       <div className='card_title'>
         <p>{book.Title}</p>
@@ -21,11 +25,6 @@ const Card = ({ book } : CardProps) => {
         book.Authors.map((author) => (
           <p key={author.Id}> {author.FirstName} {author.LastName}</p>
         ))}
-      </div>
-      <div className='button_for_card'>
-        <button className='edit_button_for_card'>Edit</button>
-        <button className='delete_button_for_card'> Delete</button>
-        <button className='rent_button_for_card'>Rent</button>
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import Where from './Where'
+import { AuthorBookDetails } from './Author'
 
 export interface  BookRequest {
     PageNumber: number,
@@ -12,3 +13,15 @@ export interface BooksRequest {
     PageLength: number,
     Where: Where[],
   }
+
+export interface BookDetailsRequest {
+    Id: number,
+    Title: string
+    Description: string,
+    ISBN: string,
+    Quantity: number,
+    Available: number,
+    Cover: string,
+    PublishDate: string,
+    Authors:AuthorBookDetails[]
+}

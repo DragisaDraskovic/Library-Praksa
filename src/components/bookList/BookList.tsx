@@ -11,7 +11,7 @@ import Search from '../search/Search'
 import BookResponse from '../../model/BookResponse'
 import { BooksRequest } from '../../model/BookRequest'
 
-const initialNumberCardForRendering = 6
+const initialNumberCardForRendering = 12
 const BookList = () => {
   const [ books, setBooks ] = useState<Book[]>([])
   const [ hasMore, setHasMore ] = useState(true)

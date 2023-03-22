@@ -6,8 +6,8 @@
 @media only screen and (min-width: 750px  ) {
 
     .main_page_container {
-    width: 90%;
-    background-color: #8fd9e4;
+    width: 100%;
+    background-color: #d6f3f8;
     height: 90%;
     display: flex;
     flex-wrap: wrap;
