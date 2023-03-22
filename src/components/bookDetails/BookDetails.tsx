@@ -12,7 +12,7 @@ import { convertDateToString } from '../../utils/ConvertDate'
 import RentalServices from '../../services/RentalServices'
 import { RentBookHistory } from '../../model/Rent'
 import TokenService from '../../services/TokenService'
-import { isUserRegularUser } from '../../utils/Roles'
+import { isUserAdmin, isUserRegularUser } from '../../utils/Roles'
 import { Jwt, roleKey } from '../../model/JWT'
 import ModalForEdit from '../modalForEdit/ModalForEdit'
 
@@ -25,6 +25,7 @@ const BookDetails = () => {
   const navigate = useNavigate()
   const [ isOpenEditModal, setIsOpenEditModal ] = useState(false)
   const [ isUser, setIsUser ] = useState(false)
+  const [ isAdmin, setIsAdmin ] = useState(true)
   const [ rentalBooksHistory, setRentalBooksHistory ] = useState<RentBookHistory[]>([])
   const [ bookDetails, setBookDetails ] = useState<BookDetailsRequest>(
     {
@@ -41,7 +42,7 @@ const BookDetails = () => {
   )
   useEffect(() => {
     getBook()
-    getHistoryBooks()
+    if(isAdmin) { getHistoryBooks() }
   }, [ ])
 
   const getBook = () => {
@@ -83,6 +84,12 @@ const BookDetails = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const token = TokenService.getAccesToken()
+    if(token) {
+      setIsAdmin(isUserAdmin(jwtDecode<Jwt>(token)[roleKey]))
+    }
+  }, [])
   const handleEditBook = () => {
     setIsOpenEditModal(true)
   }
@@ -94,9 +101,7 @@ const BookDetails = () => {
   const handleRentBook = () => {
     RentalServices.rentBook(bookDetails.Id)
       .then(() => {
-        toast.success('Success rent book', {
-          position: toast.POSITION.TOP_RIGHT
-        })
+        toast.success('Success rent book')
         getBook()
         getHistoryBooks()
       })
@@ -150,7 +155,7 @@ const BookDetails = () => {
           <div className='container_for_button'>
             <button className='button_edit' onClick={handleEditBook}>Edit</button>
             <button className='button_delete' onClick={handleDeleteBook}>Delete</button>
-            <button className='button_rent' onClick={handleRentBook}>Rent</button>
+            <button className='button_rent' disabled={bookDetails.Quantity === 0} onClick={handleRentBook}>Rent</button>
             <button className='button_back' onClick={handleBack}>Back</button>
           </div>
           :

@@ -133,7 +133,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_title'
               placeholder='Title'
               onChange={({ target }) => setBooksData((prevTitle) => ({ ...prevTitle, Title: target.value }))}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
@@ -142,7 +142,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_description'
               placeholder='Description'
               onChange={({ target }) => setBooksData((prevDescription) => ({ ...prevDescription, Description: target.value }))}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
@@ -150,9 +150,9 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='text'
               className='input_for_isbn'
               placeholder='ISBN'
-              pattern='^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$'
+              pattern='^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$'
               onChange={({ target }) => setBooksData((prevIsbn) => ({ ...prevIsbn, Isbn: target.value }))}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
@@ -161,7 +161,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               className='input_for_quantity'
               placeholder='Quantity'
               onChange={({ target }) => setBooksData((prevQuantity) => ({ ...prevQuantity, Quantity: +target.value }))}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
@@ -169,7 +169,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='date'
               className='input_for_date'
               onChange={({ target }) => setBooksData((prevDate) => ({ ...prevDate, PublishDate: target.value }))}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
@@ -177,7 +177,7 @@ const ModalCreateBooks = ({ onClose, bookId } : Modal) => {
               type='file'
               className='input_for_image'
               onChange={handleImgUpload}
-              disabled={!toggleAuthorForm && true }
+              disabled={!toggleAuthorForm}
             />
           </div>
           <div className='container_for_element'>
