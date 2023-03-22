@@ -49,6 +49,10 @@
     top: 15px;
 }
 
+.p_author {
+    margin: 5px
+}
+
 @media only screen and (min-width: 750px  ) {
     .footer {
         display: none;

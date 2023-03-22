@@ -7,8 +7,6 @@ import Card from '../card/Card'
 
 const MostRentedBooks = () => {
   const [ mostRentedBooks, setMostRentedBooks ] = useState<MostRented[]>([])
-  console.log(mostRentedBooks)
-
   const getMostRented = () => {
     RentalServices.getMostRented(10).then((response) => {
       setMostRentedBooks(response.data)

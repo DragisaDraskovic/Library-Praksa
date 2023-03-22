@@ -28,7 +28,7 @@ const Card = ({ book, mostRented } : CardProps) => {
       <div className='card_author'>
         {book.Authors &&
         book.Authors.map((author) => (
-          <p key={author.Id}> {author.FirstName} {author.LastName}</p>
+          <p className='p_author' key={author.Id}> {author.FirstName} {author.LastName}</p>
         ))}
       </div>
     </div> }
