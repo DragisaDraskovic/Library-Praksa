@@ -19,7 +19,7 @@ const MostRentedBooks = () => {
   return (
     <>
       <div className='container_for_title'>
-        <p className='p_tag_for_most_render'>MOST RENDER BOOKS</p>
+        <p className='p_tag_for_most_render'>MOST RENTED BOOKS</p>
       </div>
       <div className='container_for_most_rented'>
         {mostRentedBooks.map((books) => <Card key={books.Id} mostRented={books}/>)}

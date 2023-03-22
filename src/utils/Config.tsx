@@ -4,7 +4,7 @@ const token = TokenService.getAccesToken()
 
 const config = {
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${TokenService.getAccesToken()}`
   }
 }
 

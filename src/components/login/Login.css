@@ -64,9 +64,10 @@ body {
 
 .error_message_for_credentials {
     color: #FF3333;
-    margin: 20px;
-    font-style: oblique;
+    margin-top: 20px;
+    margin-left: 0px;
     font-family: serif;
+    text-align: center;
 }
 
 
@@ -119,10 +120,15 @@ body {
     }
 
     .button_Submit {
-        margin-left: 20%;
+        margin-left: 65px;
         height: 35px;
         width: 150px;
         border-radius: 50px;
         background-color: #8fd9e4;
+    }
+    .title_login {
+        color: white;
+        padding-left: 0;
+        padding-top: 55px;
     }
 }
