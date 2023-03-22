@@ -1,4 +1,5 @@
-import { GrLogout as LogoutIcon } from 'react-icons/gr'
+
+import { GrLogout as LogoutIcon , GrLogin as LoginIcon } from 'react-icons/gr'
 import { useNavigate } from 'react-router-dom'
 
 import TokenService from '../../services/TokenService'
@@ -36,7 +37,7 @@ const Header = ( { isLogged, setIsLogged } : HeaderProps) => {
         </div>
         :
         <div className='header_container'>
-          <button className='login_button' onClick={handleLogin}>Login <LogoutIcon/></button>
+          <button className='login_button' onClick={handleLogin}>Login <LoginIcon /></button>
         </div>
       }
     </>

@@ -8,13 +8,13 @@ import './BookDetails.css'
 import placeholderImg from '../../assets/placeholder/placeholderForBook.png'
 import { BookDetailsRequest } from '../../model/BookRequest'
 import BookService from '../../services/BookService'
-import ModalForEdit from '../modalForEdit/ModalForEdit'
 import { convertDateToString } from '../../utils/ConvertDate'
 import RentalServices from '../../services/RentalServices'
 import { RentBookHistory } from '../../model/Rent'
 import TokenService from '../../services/TokenService'
 import { isUserRegularUser } from '../../utils/Roles'
 import { Jwt, roleKey } from '../../model/JWT'
+import ModalForEdit from '../modalForEdit/ModalForEdit'
 
 
 
@@ -64,14 +64,15 @@ const BookDetails = () => {
   }
 
   const handleDeleteBook = () => {
-    BookService.deleteBook(bookDetails.Id)
-      .then(() => {
-        confirm('Are you sure to delete book?') &&
+    if(confirm('Are you sure to delete book?')) {
+      BookService.deleteBook(bookDetails.Id)
+        .then(() => {
           navigate('/mainpage')
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
 
 
@@ -144,12 +145,6 @@ const BookDetails = () => {
             }
           </div>
         </div>
-        {/* <div className='container_for_button'>
-          <button className={isUser ? 'button_edit_close' : 'button_edit'} onClick={handleEditBook}>Edit</button>
-          <button className={ isUser ? 'button_delete_close' :'button_delete'} onClick={handleDeleteBook}>Delete</button>
-          <button className='button_rent' onClick={handleRentBook}>Rent</button>
-          <button className='button_back' onClick={handleBack}>Back</button>
-        </div> */}
         { !isUser
           ?
           <div className='container_for_button'>
